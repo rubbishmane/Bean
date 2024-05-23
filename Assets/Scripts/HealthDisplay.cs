@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthDisplay : MonoBehaviour
 {
     [SerializeField] private Health health;
-    [SerializeField] private Text healthText;
+    [SerializeField] private TMP_Text healthText;
 
     void Update()
     {
-        if (health != null && healthText != null)
-        {
-            healthText.text = "Health: " + health.GetCurrentHealth().ToString();
-        }
+        healthText = GetComponent<TextMeshProUGUI>();
+        healthText.text = "Health: " + health.GetCurrentHealth().ToString();
+        
+        
     }
 }

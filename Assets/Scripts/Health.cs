@@ -16,7 +16,9 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.L)){TakeDamage(10);}
+        if(Input.GetKeyDown(KeyCode.K)){Heal(10);}
+
     }
 
     public void TakeDamage (int amount)
