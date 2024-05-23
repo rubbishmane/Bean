@@ -8,6 +8,9 @@ public class HealthDisplay : MonoBehaviour
 
     void Update()
     {
-        healthText.text = "Health: " + health.GetCurrentHealth().ToString();
+        if (health != null && healthText != null)
+        {
+            healthText.text = "Health: " + health.GetCurrentHealth().ToString();
+        }
     }
 }
