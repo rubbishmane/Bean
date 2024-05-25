@@ -63,6 +63,8 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+		private Alteruna.Avatar _avatar;
+
 
 	
 #if ENABLE_INPUT_SYSTEM
@@ -88,6 +90,8 @@ namespace StarterAssets
 
 		private void Awake()
 		{
+			_avatar = GetComponent<Alteruna.Avatar>();
+			if(!_avatar.IsMe){return;}
 			// get a reference to our main camera
 			if (_mainCamera == null)
 			{
@@ -97,6 +101,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
@@ -108,10 +113,17 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+
+		
+			
 		}
 
 		private void Update()
 		{
+			if(!_avatar.IsMe){return;}
+			Cursor.lockState = CursorLockMode.Locked;
+			
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -119,11 +131,15 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
+			if(!_avatar.IsMe){return;}
+			
 			CameraRotation();
 		}
 
 		private void GroundedCheck()
 		{
+			
+			
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
@@ -131,6 +147,7 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
+			
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
 			{
