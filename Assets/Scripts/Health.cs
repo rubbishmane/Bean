@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Alteruna;
 
-public class Health : MonoBehaviour
+//Written Entirely by Matthew
+public class Health : AttributesSync
 {
-     [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private int maxHealth = 100;
+    //SyncField makes the var synch with multiplayer
+    [SynchronizableField] public int currentHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,7 @@ public class Health : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K)){Heal(10);}
 
     }
-
+    [SynchronizableMethod]
     public void TakeDamage (int amount)
     {
         currentHealth -=  amount; 

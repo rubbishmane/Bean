@@ -4,12 +4,17 @@ using TMPro;
 
 public class HealthDisplay : MonoBehaviour
 {
-    //[SerializeField] private Health health;
-//[SerializeField] private TMP_Text healthText;
+    //private Health health;
+    //private TMP_Text healthText;
 
-    void Update()
+    void Start()
     {
         //healthText = GetComponent<TextMeshProUGUI>();
+        //health = 
+    }
+    void Update()
+    {
+        
         //healthText.text = "Health: " + health.GetCurrentHealth().ToString();
         
         
