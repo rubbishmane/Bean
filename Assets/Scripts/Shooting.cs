@@ -15,13 +15,17 @@ public class Shooting : AttributesSync
         int DmgAmount = 60;
     }
 
-    public List<GameObject> Items;
+    //public List<GameObject> Items;
   
     private ItemController controlScript;
     private Alteruna.Avatar _avatar;
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private int playerSelfLayer;
 
+    void Awake()
+    {
+        _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
+    }
     void Start()
     {   
         if(_avatar.IsMe)
@@ -51,8 +55,8 @@ public class Shooting : AttributesSync
             {
                 Debug.Log("Compare Tag");
                 GameObject _enemy = hit.collider.gameObject;
-                Health _enemyHealth = _enemy.GetComponentInChildren<Health>();
-                _enemyHealth.BroadcastRemoteMethod("TakeDamage", 20);
+                Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
+                _enemyHealth.ReDoBroadcast();
             }
         }
     }
