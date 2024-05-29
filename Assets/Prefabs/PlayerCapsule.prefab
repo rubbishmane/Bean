@@ -286,6 +286,7 @@ MonoBehaviour:
   LocalMethodBehavior: 1
   maxHealth: 100
   currentHealth: 0
+  avatar: {fileID: 3472711847712035806}
 --- !u!1 &6433942221178821175
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +579,7 @@ MonoBehaviour:
   _uidString: 4bf7440c-fbf1-43ce-8812-4d44b29408c5
   Reliability: 1
   LocalMethodBehavior: 1
-  Items: []
+  _avatar: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64

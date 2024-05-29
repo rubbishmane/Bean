@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alteruna;
+using Alteruna.Trinity;
 
 public class Shooting : AttributesSync
 {
@@ -18,7 +19,7 @@ public class Shooting : AttributesSync
     //public List<GameObject> Items;
   
     private ItemController controlScript;
-    private Alteruna.Avatar _avatar;
+    public  Alteruna.Avatar _avatar;
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private int playerSelfLayer;
 
@@ -40,11 +41,11 @@ public class Shooting : AttributesSync
         if(Input.GetMouseButtonDown(0))
         {
             Debug.Log("MouseDown");
-            Shoot("ppop", 1);
+            Shoot();
         }
     }
 
-    void Shoot(string Item, int dmg)
+    void Shoot()
     {
         Debug.Log("void Shoot");
         RaycastHit hit;
