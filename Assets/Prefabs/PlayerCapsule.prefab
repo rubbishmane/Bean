@@ -201,7 +201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3934807964063698604}
-  - component: {fileID: 8951816329509927112}
   m_Layer: 6
   m_Name: ItemController
   m_TagString: Untagged
@@ -225,18 +224,6 @@ Transform:
   - {fileID: 1016396719136869974}
   m_Father: {fileID: 7535656945192589065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8951816329509927112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3503337893711846839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 468c3fa55909f6f4495eb3510fc636db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5353548027518478152
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6155257177764308664}
-  - component: {fileID: 8488548797376013050}
+  - component: {fileID: 846382013731557612}
   m_Layer: 6
   m_Name: Health
   m_TagString: Player
@@ -269,7 +256,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7535656945192589065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8488548797376013050
+--- !u!114 &846382013731557612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,16 +265,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5353548027518478152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b653c080f61c54247b12f1e4df5bef70, type: 3}
+  m_Script: {fileID: 11500000, guid: 8776bcfea0830624da6f8200ea1868b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 01638c43-1584-4931-8f8a-7c0297a6c081
+  _uidString: ca6cf842-7457-4789-86c2-e65ac23983b5
   Reliability: 1
   LocalMethodBehavior: 1
   maxHealth: 100
   currentHealth: 0
-  avatar: {fileID: 3472711847712035806}
+  avatar: {fileID: 0}
 --- !u!1 &6433942221178821175
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058466385150422380}
-  - component: {fileID: 1826061099147158068}
+  - component: {fileID: 6358215136347215573}
   m_Layer: 6
   m_Name: SHoot
   m_TagString: Untagged
@@ -564,7 +551,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7535656945192589065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1826061099147158068
+--- !u!114 &6358215136347215573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,18 +560,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8925126035118017374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4cfc5004ae53f445b26e5919d189f11, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d981e0e69dfcbb439e4d59240ee5f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 4bf7440c-fbf1-43ce-8812-4d44b29408c5
+  _uidString: 96a2e24b-d763-4bf3-b978-c1dee471956d
   Reliability: 1
   LocalMethodBehavior: 1
   _avatar: {fileID: 0}
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 64
-  playerSelfLayer: 7
+    m_Bits: 0
+  playerSelfLayer: 0
 --- !u!1 &9074180112674677776
 GameObject:
   m_ObjectHideFlags: 0
