@@ -18,7 +18,7 @@ public class Shooting : AttributesSync
 
     //public List<GameObject> Items;
   
-    private ItemController controlScript;
+    //private ItemController controlScript;
     public  Alteruna.Avatar _avatar;
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private int playerSelfLayer;
