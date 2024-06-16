@@ -16,7 +16,7 @@ public class Health : AttributesSync
 
     // Start is called before the first frame update
     void Start()
-    {
+    {      
         //multiplayerManager = FindObjectOfType<MultiplayerManager>();
         currentHealth = maxHealth;
         //ushort userIndex = multiplayerManager.GetUserIndex();
