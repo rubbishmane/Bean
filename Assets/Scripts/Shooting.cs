@@ -6,59 +6,70 @@ using Alteruna.Trinity;
 
 public class Shooting : AttributesSync
 {
-    class Pistol
-    {
-        int dmgAmount = 15;
-        //bla blah
-    }
-    class Shotty
-    {
-        int DmgAmount = 60;
-    }
-
-    //public List<GameObject> Items;
   
-    //private ItemController controlScript;
-    public  Alteruna.Avatar _avatar;
-    [SerializeField] private LayerMask playerLayerMask;
-    [SerializeField] private int playerSelfLayer;
 
+    public  Alteruna.Avatar _avatar;
+
+    [SerializeField] private int ammoCount;
+    private int maxAmmoCount = 10;
+
+    private int damage = 10;
+
+    // Called when the game starts, before the start function.
     void Awake()
     {
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
     }
+    // Called after void Awake();
     void Start()
     {   
-        if(_avatar.IsMe)
-            _avatar.gameObject.layer = playerSelfLayer;
-        //controlScript = GetComponent<ItemController>();
-    }
-    void Update()
-    {
-        if(!_avatar.IsMe)
-            return;
-        //currentItem = ItemConroller.equipt;
-        if(Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("MouseDown");
-            Shoot();
-        }
+        ammoCount = maxAmmoCount;
     }
 
-    void Shoot()
+    //Called every frame
+    void Update()
+    {   
+        //reqeuires avatar to be you or the function exits.
+        if(!_avatar.IsMe)
+            return;
+
+        if(Input.GetMouseButtonDown(0) && ammoCount >= 1 )
+        {
+            Shoot(damage);
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
+    }
+    //Called when LMB is clicked
+    void Shoot(int dmg)
     {
+        ammoCount -= 1;
+        
         Debug.Log("void Shoot");
         RaycastHit hit;
+        //Shoots Raycast
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.Log("Raycast shot");
+            //Checks to see if hit has a player tag
             if(hit.transform.CompareTag("Player"))
             {
                 Debug.Log("Compare Tag");
+
+                //gets oppositions health component and take away health.
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
-                _enemyHealth.ReDoBroadcast();
+                _enemyHealth.ReDoBroadcast(dmg);
             }
         }
     }
+
+    void Reload()
+    {   
+        ammoCount = maxAmmoCount;
+    }
+
+
 }

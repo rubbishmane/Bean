@@ -29,7 +29,7 @@ public class Health : AttributesSync
         if(Input.GetKeyDown(KeyCode.K)){Heal(10);}
 
     }
-    public void ReDoBroadcast(){
+    public void ReDoBroadcast(int dmg){
         Debug.Log("This Worked");
         BroadcastRemoteMethod("TakeDamage");
     }
