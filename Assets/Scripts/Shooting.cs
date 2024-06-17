@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Alteruna;
 using Alteruna.Trinity;
-using TMPro;
-
 public class Shooting : AttributesSync
 {
   
@@ -13,7 +11,7 @@ public class Shooting : AttributesSync
 
     [SerializeField] private int ammoCount;
     private int maxAmmoCount = 10;
-    public TextMeshProUGUI ammoText;
+    
 
     private int damage = 10;
 
@@ -44,7 +42,7 @@ public class Shooting : AttributesSync
             Reload();
         }
 
-        ammoText.text = ammoCount.ToString();
+        
     }
     //Called when LMB is clicked
     void Shoot(int dmg)
