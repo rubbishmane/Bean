@@ -51,7 +51,6 @@ public class Health : AttributesSync
 
     public void Heal(int amount)
     {
-        
         currentHealth += amount;
         if (currentHealth > maxHealth)
         {
@@ -69,8 +68,7 @@ public class Health : AttributesSync
             return;
         }
         else
-        {
-            
+        {  
             FindObjectOfType<Multiplayer>().CurrentRoom.Leave();
             Debug.Log("You have died tragically");
             Application.Quit();
