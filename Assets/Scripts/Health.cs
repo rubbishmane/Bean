@@ -13,13 +13,13 @@ public class Health : AttributesSync
         health = maxHealth;
     }
     //Broadcast function over network
-    public void ReDoBroadcast(int damage)
+    public void Damage(int damage)
     {
         BroadcastRemoteMethod("Damage", damage);
     }
     //Take damage 
     [SynchronizableMethod] 
-    void Damage (int dmg)
+    void Damage_ (int dmg)
     {
         health -= (float)dmg; 
     }
