@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class UIUpdater : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private GameObject ammoCountObject;
+    public TextMeshProUGUI ammoCount;
+   
     void Start()
     {
+        ammoCountObject = GameObject.Find("ammoCount");
         
     }
 

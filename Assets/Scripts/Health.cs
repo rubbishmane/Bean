@@ -11,7 +11,7 @@ public class Health : AttributesSync
 
     [SerializeField] private int maxHealth = 100;
     //SyncField makes the var synch with multiplayer
-    [SerializeField] public int currentHealth;
+    public int currentHealth;
     public Alteruna.Avatar avatar;
 
     // Start is called before the first frame update
@@ -31,16 +31,17 @@ public class Health : AttributesSync
     }
     public void ReDoBroadcast(int dmg){
         Debug.Log("This Worked");
-        BroadcastRemoteMethod("TakeDamage");
+        BroadcastRemoteMethod("TakeDamage", 10);
     }
     [SynchronizableMethod]
-    public void TakeDamage()
+    public void TakeDamage(int dmg)
     {
-        Debug.Log("Damage taken");
+
         if(!avatar.IsMe)
             return;
+        Debug.Log("Damage taken");
 
-        currentHealth -=  10; 
+        currentHealth -=  dmg; 
         if (currentHealth <= 0) 
         {
             Debug.Log("Should Die");
