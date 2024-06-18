@@ -4,86 +4,25 @@ using UnityEngine;
 using Alteruna; 
 //using Alteruna.Multiplayer;
 
-//Written Entirely by Matthew
 public class Health : AttributesSync
 {
-    //private MultiplayerManager multiplayerManager;
 
-    [SerializeField] private int maxHealth = 100;
-    //SyncField makes the var synch with multiplayer
-    public int currentHealth;
-    public Alteruna.Avatar avatar;
 
-    // Start is called before the first frame update
+    public float health;
+    private float maxHealth = 100f;
     void Start()
-    {      
-        //multiplayerManager = FindObjectOfType<MultiplayerManager>();
-        currentHealth = maxHealth;
-        //ushort userIndex = multiplayerManager.GetUserIndex();
-    }
-
-    // Update is called once per frame
-    void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L)){TakeDamage();}
-        if(Input.GetKeyDown(KeyCode.K)){Heal(10);}
-
+        health = maxHealth;
     }
-    public void ReDoBroadcast(int dmg){
-        Debug.Log("This Worked");
-        BroadcastRemoteMethod("TakeDamage", 10);
-    }
-    [SynchronizableMethod]
-    public void TakeDamage(int dmg)
+    public void ReDoBroadcast(int damage)
     {
-
-        if(!avatar.IsMe)
-            return;
-        Debug.Log("Damage taken");
-
-        currentHealth -=  dmg; 
-        if (currentHealth <= 0) 
-        {
-            Debug.Log("Should Die");
-            currentHealth = 0;  
-            Die();
-        }
-    } 
-
-    public void Heal(int amount)
+        BroadcastRemoteMethod("TakeDamage", damage);
+    }
+    [SynchronizableMethod] 
+    void TakeDamage (int dmg)
     {
-        currentHealth += amount;
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
+        health -= (float)dmg; 
     }
 
-    private void Die()
-    {   
-        Debug.Log("die void called");
-        //indexUser = Alteruna.Avatar.Possessor.Index;
-        //Alteruna.KickUser(indexUser);
-        if(!avatar.IsMe)
-        {
-            return;
-        }
-        else
-        {  
-            FindObjectOfType<Multiplayer>().CurrentRoom.Leave();
-            Debug.Log("You have died tragically");
-            Application.Quit();
-        }
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
+    
 }
