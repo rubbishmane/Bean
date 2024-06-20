@@ -9,7 +9,7 @@ public class Shooting : AttributesSync
 
     public  Alteruna.Avatar _avatar;
 
-    [SerializeField] private int ammoCount;
+    public int ammoCount;
     private int maxAmmoCount = 10;
     
 
@@ -63,14 +63,13 @@ public class Shooting : AttributesSync
                 //gets oppositions health component and take away health.
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
-                _enemyHealth.ReDoBroadcast(dmg);
+                _enemyHealth.Damage(dmg);
             }
         }
     }
 
     void Reload()
-    {   
-
+    {  
         ammoCount = maxAmmoCount;
     }
 

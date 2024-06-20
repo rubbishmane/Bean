@@ -7,18 +7,21 @@ using TMPro;
 public class UIUpdater : MonoBehaviour
 {
     private GameObject ammoCountObject;
-    public TextMeshProUGUI ammoCount;
-    private Health health;
+    public TextMeshProUGUI ammoCountText;
+    private Shooting shootScript;
+    [SerializeField] private GameObject shoot;
    
-    void Start()
+    void Awake()
     {
-        ammoCountObject = GameObject.Find("ammoCount");
-        ammoCount = ammoCountObject.GetComponent<TextMeshProUGUI>();
+        shootScript = shoot.GetComponent<Shooting>();
+        ammoCountObject = GameObject.Find("AmmoCount");
+        ammoCountText = ammoCountObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ammoCount.text = health.Damage(10f);
+        
+        ammoCountText.text = "Ammo: " + shootScript.ammoCount.ToString();
     }
 }

@@ -15,7 +15,7 @@ public class Health : AttributesSync
     //Broadcast function over network
     public void Damage(int damage)
     {
-        BroadcastRemoteMethod("Damage", damage);
+        BroadcastRemoteMethod("Damage_", damage);
     }
     //Take damage 
     [SynchronizableMethod] 
