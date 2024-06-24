@@ -328,6 +328,7 @@ MonoBehaviour:
   - Name: Max
     NetLOD: 4
     Frequency: 120
+  Reliability: 2
   UseGlobalPosition: 0
   refreshRate: 30
   SyncedAxes: 511
@@ -847,5 +848,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a298d1a67f03ca44fb4523f4704da6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoCountText: {fileID: 0}
   shoot: {fileID: 3121781326801206414}
+  Health: {fileID: 6208149856953642075}
