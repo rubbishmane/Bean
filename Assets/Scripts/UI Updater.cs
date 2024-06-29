@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Alteruna;
+
 
 
 public class UIUpdater : MonoBehaviour
 {
+
+
+    public  Alteruna.Avatar _avatar;
+
     //Getting Ammo Script and Display
     private GameObject ammoCountObject;
     private TextMeshProUGUI ammoCountText;
@@ -24,6 +30,8 @@ public class UIUpdater : MonoBehaviour
    
     void Awake()
     {
+        _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
+        
         shootScript = shoot.GetComponent<Shooting>();
         ammoCountObject = GameObject.Find("AmmoCount");
         ammoCountText = ammoCountObject.GetComponent<TextMeshProUGUI>();
@@ -36,6 +44,8 @@ public class UIUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!_avatar.IsMe)
+            return;
         ammoCountText.text = "Ammo: " + shootScript.ammoCount.ToString();
         healthBarScript.SetHealth(healthScript.health);
     }

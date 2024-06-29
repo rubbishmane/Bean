@@ -47,6 +47,10 @@ public class Shooting : AttributesSync
     //Called when LMB is clicked
     void Shoot(int dmg)
     {
+        if(!_avatar.IsMe)
+        {
+            return;
+        }
         ammoCount -= 1;
         
         Debug.Log("void Shoot");
@@ -70,6 +74,10 @@ public class Shooting : AttributesSync
 
     void Reload()
     {  
+        if(!_avatar.IsMe)
+        {
+            return;
+        }
         ammoCount = maxAmmoCount;
     }
 
