@@ -27,9 +27,13 @@ public class UIUpdater : MonoBehaviour
     private GameObject healthBarObject;
     private Healthbar healthBarScript;
     private Health healthScript;
-   
+
+    private int SelfLayer; 
     void Awake()
     {
+       
+        
+        
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
         
         shootScript = shoot.GetComponent<Shooting>();
@@ -39,6 +43,15 @@ public class UIUpdater : MonoBehaviour
         healthScript = Health.GetComponent<Health>();
         healthBarObject = GameObject.Find("HealthBar");
         healthBarScript = healthBarObject.GetComponent<Healthbar>();
+    }
+
+    void Start()
+    {
+         if(_avatar.IsMe)
+        {
+            //sets layer
+            gameObject.layer = SelfLayer; 
+        }
     }
 
     // Update is called once per frame

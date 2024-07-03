@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2586341510909787501}
   - component: {fileID: 913305615545901321}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: SHoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 4204436326793214929}
   - component: {fileID: 3809345135681895251}
   - component: {fileID: 2612321492389276836}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 6125414698895056542}
   - component: {fileID: 7891627169917048835}
   - component: {fileID: 2963858980221532638}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: PlayerCapsule 1 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8209061017466139997}
   - component: {fileID: 1578398934628896868}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Health
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6805361968958278081}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: ItemController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6817780288749463368}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 8616166926890746183}
   - component: {fileID: 1374636285464037867}
   - component: {fileID: 4877521612599738840}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 1017717243867729786}
   - component: {fileID: 3468811611425628008}
   - component: {fileID: 4641290678348978016}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 121540810388803541}
   - component: {fileID: 8968862994154039847}
   - component: {fileID: 4181447308096127518}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: clipping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 128
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -815,7 +815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4125763817026577705}
   - component: {fileID: 4312980921659936211}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: UI manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}

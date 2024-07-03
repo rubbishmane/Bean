@@ -30,7 +30,7 @@ public class Health : AttributesSync
     }
     //Take damage 
     [SynchronizableMethod] 
-    void Damage_ (float dmg)
+    void Damage2 (float dmg)
     {
         if(!_avatar.IsMe)
         {
