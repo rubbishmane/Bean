@@ -8,7 +8,7 @@ public class Health : AttributesSync
 {
 
 
-    public  Alteruna.Avatar _avatar;
+
     
     public float health;
     private float maxHealth = 100f;
@@ -16,33 +16,24 @@ public class Health : AttributesSync
 
     void Start()
     {
-        _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
         health = maxHealth;
     }
     //Broadcast function over network
     public void Damage(int damage)
     {   
-        if(!_avatar.IsMe)
-        {
-            return;
-        }
-        BroadcastRemoteMethod("Damage_", damage);
+        BroadcastRemoteMethod(nameof(Damage2), damage);
     }
     //Take damage 
     [SynchronizableMethod] 
-    void Damage2 (float dmg)
+    void Damage2 (int dmg)
     {
-        if(!_avatar.IsMe)
-        {
-            return;
-        }
         health -= dmg; 
     }
 
     void Update()
     {
 
-        if(!_avatar.IsMe)
+        if(!Multiplayer.GetAvatar().IsMe)
         {
             return;
         }

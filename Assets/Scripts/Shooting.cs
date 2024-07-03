@@ -45,6 +45,7 @@ public class Shooting : AttributesSync
         
     }
     //Called when LMB is clicked
+    
     void Shoot(int dmg)
     {
         if(!_avatar.IsMe)
