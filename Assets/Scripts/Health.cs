@@ -12,11 +12,14 @@ public class Health : AttributesSync
     
     public float health;
     private float maxHealth = 100f;
+
+    private OnDeath onDeath;
   
 
     void Start()
     {
         health = maxHealth;
+        onDeath = transform.parent.GetComponent<OnDeath>();
     }
     //Broadcast function over network
     public void Damage(int damage)
@@ -41,6 +44,10 @@ public class Health : AttributesSync
         {
             Application.Quit();
         }
+        onDeath.Death();
+        
+
+        
     }
 
 }
