@@ -13,13 +13,13 @@ public class Health : AttributesSync
     public float health;
     private float maxHealth = 100f;
 
-    private OnDeath onDeath;
+    //private OnDeath onDeath;
   
 
     void Start()
     {
         health = maxHealth;
-        onDeath = transform.parent.GetComponent<OnDeath>();
+        //onDeath = transform.parent.GetComponent<OnDeath>();
     }
     //Broadcast function over network
     public void Damage(int damage)
@@ -35,19 +35,16 @@ public class Health : AttributesSync
 
     void Update()
     {
-
         if(!Multiplayer.GetAvatar().IsMe)
         {
             return;
         }
         if(health <= 0f)
         {
-            Application.Quit();
+            if(Multiplayer.GetAvatar().IsMe)
+            {
+                Destroy(transform.parent.gameObject);
+            }
         }
-        onDeath.Death();
-        
-
-        
     }
-
 }
