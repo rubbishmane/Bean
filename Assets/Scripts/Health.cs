@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alteruna; 
+using UnityEngine.SceneManagement;
 //using Alteruna.Multiplayer;
 
 public class Health : AttributesSync
@@ -43,7 +44,8 @@ public class Health : AttributesSync
         {
             if(Multiplayer.GetAvatar().IsMe)
             {
-                Destroy(transform.parent.gameObject);
+                SceneManager.LoadScene("Respawn");
+              // Destroy(transform.parent.gameObject);
             }
         }
     }
