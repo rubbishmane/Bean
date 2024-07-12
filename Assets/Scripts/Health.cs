@@ -36,15 +36,15 @@ public class Health : AttributesSync
     void Update()
     {
 
-        if(!Multiplayer.GetAvatar().IsMe)
+        if(Multiplayer.GetAvatar().IsMe)
         {
-            return;
+            if(health <= 0f)
+            {
+                Application.Quit();
+            }
+            //onDeath.Death();
         }
-        if(health <= 0f)
-        {
-            Application.Quit();
-        }
-        onDeath.Death();
+        
         
 
         
