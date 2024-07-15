@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alteruna; 
+using UnityEngine.SceneManagement;
 //using Alteruna.Multiplayer;
 
 public class Health : AttributesSync
@@ -13,13 +14,13 @@ public class Health : AttributesSync
     public float health;
     private float maxHealth = 100f;
 
-    private OnDeath onDeath;
+    //private OnDeath onDeath;
   
 
     void Start()
     {
         health = maxHealth;
-        onDeath = transform.parent.GetComponent<OnDeath>();
+        //onDeath = transform.parent.GetComponent<OnDeath>();
     }
     //Broadcast function over network
     public void Damage(int damage)
@@ -35,8 +36,7 @@ public class Health : AttributesSync
 
     void Update()
     {
-
-        if(Multiplayer.GetAvatar().IsMe)
+        if(!Multiplayer.GetAvatar().IsMe)
         {
             if(health <= 0f)
             {
@@ -44,10 +44,13 @@ public class Health : AttributesSync
             }
             //onDeath.Death();
         }
-        
-        
-
-        
+        if(health <= 0f)
+        {
+            if(Multiplayer.GetAvatar().IsMe)
+            {
+                SceneManager.LoadScene("Respawn");
+              // Destroy(transform.parent.gameObject);
+            }
+        }
     }
-
 }
