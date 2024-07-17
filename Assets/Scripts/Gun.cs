@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public bool hasWeapon;
+    public bool isEquipt;
     public float fireRate;
 
     public float reloadTime;
