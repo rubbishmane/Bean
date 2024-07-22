@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     
+    public GameObject[] items;
     void Start()
     {
         
@@ -13,6 +14,8 @@ public class ItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        string n = Input.inputString();
+        for (int i; i = 0; i++;)
         
     }
 }
