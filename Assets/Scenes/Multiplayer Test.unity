@@ -355,9 +355,19 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 353131443848261156, guid: b988eae8ae198a74f845dbe9e5300341,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1823296824877551019, guid: b988eae8ae198a74f845dbe9e5300341,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143978256048993758, guid: b988eae8ae198a74f845dbe9e5300341,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4225395217560549097, guid: b988eae8ae198a74f845dbe9e5300341,
@@ -369,6 +379,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCapsule 1 1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294067463963590843, guid: b988eae8ae198a74f845dbe9e5300341,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7326254143173559695, guid: b988eae8ae198a74f845dbe9e5300341,
         type: 3}
