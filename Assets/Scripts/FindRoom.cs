@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class RoomFinder : MonoBehaviour
 {
-    public void PlayGame ()
+    public void CreateGame ()
     {
-        SceneManager.LoadScene("LobbyFinder");
+        SceneManager.LoadScene("SampleScene");
     }
 }
 

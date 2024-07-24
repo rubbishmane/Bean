@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Health : AttributesSync
 {
-
-
-
     
     public float health;
     private float maxHealth = 100f;
@@ -34,23 +31,23 @@ public class Health : AttributesSync
         health -= dmg; 
     }
 
+
     void Update()
     {
         if(!Multiplayer.GetAvatar().IsMe)
         {
-            if(health <= 0f)
-            {
-                Application.Quit();
-            }
-            //onDeath.Death();
+            return;
         }
+       
         if(health <= 0f)
-        {
-            if(Multiplayer.GetAvatar().IsMe)
-            {
-                SceneManager.LoadScene("Respawn");
-              // Destroy(transform.parent.gameObject);
-            }
+        {  
+            Die();
         }
+    }
+
+        void Die()
+    {
+        SceneManager.LoadScene("Respawn");
+            // Destroy(transform.parent.gameObject);
     }
 }
