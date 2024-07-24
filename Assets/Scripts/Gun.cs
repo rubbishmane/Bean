@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
@@ -20,7 +21,6 @@ public class Gun : MonoBehaviour
 
     public float recoilMultiplier;
 
-    public GameObject scopeObject;
-    public GameObject crosshairObject;
-    public GameObject particles;
+ 
+    public ParticleSystem particles;
 }

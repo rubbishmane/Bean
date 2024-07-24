@@ -8,8 +8,9 @@ public class ItemController : MonoBehaviour
     public GameObject[] items;
     void Start()
     {
-         for (int i = 0; i <= items.Length; i++)
+         for (int i = 0; i < items.Length; i++)
         {
+            print(i);
             items[i].SetActive(false);
         }
     }
@@ -18,34 +19,38 @@ public class ItemController : MonoBehaviour
     void Update()
     {
         string s = Input.inputString;
+        print(s);
         switch (s)
         {
-            case "Alpha1":
+            case "1":
                 ClearEquipt();
                 items[0].SetActive(true);
                 break;
-            case "Alpha2":
+            case "2":
                 ClearEquipt();
                 items[1].SetActive(true);
                 break;
-            case "Alpha3":
+            case "3":
                 ClearEquipt();
                 items[2].SetActive(true);
                 break;
-            case "Alpha4":
+            case "4":
                 ClearEquipt();
                 items[3].SetActive(true);
                 break;
-            case "Alpha5":
+            case "5":
                 ClearEquipt();
                 items[4].SetActive(true);
-                break;    
+                break;   
+
+            default:
+                break;   
         }    
     }
 
     public void ClearEquipt()
     {
-        for (int i = 0; i <= items.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
             items[i].SetActive(false);
         }
