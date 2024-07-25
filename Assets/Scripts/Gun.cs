@@ -23,4 +23,6 @@ public class Gun : MonoBehaviour
 
  
     public ParticleSystem particles;
+
+    public Sprite crossHair;
 }

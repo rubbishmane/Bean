@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemController : MonoBehaviour
 {
     
-    public GameObject[] items;
+    public GameObject[] guns;
+
+    [SerializeField] private GameObject crossHairObject;
+
+    public Sprite defaultCH;
+    Image CH;
+    public Sprite ch;
+
+    void Awake()
+    {
+        CH = crossHairObject.GetComponent<Image>();
+    }
     void Start()
     {
-         for (int i = 0; i < items.Length; i++)
+       
+
+        for (int i = 0; i < guns.Length; i++)
         {
             print(i);
-            items[i].SetActive(false);
+            guns[i].SetActive(false);
         }
+        SetCrossHair(4);
     }
 
     // Update is called once per frame
@@ -24,36 +39,47 @@ public class ItemController : MonoBehaviour
         {
             case "1":
                 ClearEquipt();
-                items[0].SetActive(true);
+                guns[0].SetActive(true);
+                SetCrossHair(0);
                 break;
             case "2":
                 ClearEquipt();
-                items[1].SetActive(true);
+                guns[1].SetActive(true);
+                SetCrossHair(1);
                 break;
             case "3":
                 ClearEquipt();
-                items[2].SetActive(true);
+                guns[2].SetActive(true);
+                SetCrossHair(2);
                 break;
             case "4":
                 ClearEquipt();
-                items[3].SetActive(true);
+                guns[3].SetActive(true);
+                SetCrossHair(3);
                 break;
             case "5":
                 ClearEquipt();
-                items[4].SetActive(true);
+                guns[4].SetActive(true);
+                SetCrossHair(4);
                 break;   
 
             default:
+                ClearEquipt();
                 break;   
         }    
     }
 
     public void ClearEquipt()
     {
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < guns.Length; i++)
         {
-            items[i].SetActive(false);
+            guns[i].SetActive(false);
         }
+    }
+
+    private void SetCrossHair(int index)
+    {
+        CH.sprite = guns[index].transform.GetComponent<Gun>().crossHair;
     }
     
 }
