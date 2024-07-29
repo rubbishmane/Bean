@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class ItemController : MonoBehaviour
 {
     
-    public GameObject[] guns;
+    [SerializeField] internal GameObject[] guns;
 
     [SerializeField] private GameObject crossHairObject;
 
-    public Sprite defaultCH;
+    [SerializeField] internal Sprite defaultCH;
     Image CH;
-    public Sprite ch;
+    [SerializeField] internal Sprite ch;
+    SpriteRenderer spriteRenderer;
 
     void Awake()
     {
-        CH = crossHairObject.GetComponent<Image>();
+        spriteRenderer = crossHairObject.GetComponent<SpriteRenderer>();
+
     }
     void Start()
     {
-       
-
         for (int i = 0; i < guns.Length; i++)
         {
             print(i);
@@ -79,7 +79,8 @@ public class ItemController : MonoBehaviour
 
     private void SetCrossHair(int index)
     {
-        CH.sprite = guns[index].transform.GetComponent<Gun>().crossHair;
+        spriteRenderer.sprite = guns[index].transform.GetComponent<Gun>().crossHair;
+        spriteRenderer.size = guns[index].transform.GetComponent<Gun>().chSize;
     }
     
 }

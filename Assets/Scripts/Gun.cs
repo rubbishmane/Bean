@@ -7,22 +7,26 @@ public class Gun : MonoBehaviour
 {
     public bool hasWeapon;
     public bool isEquipt;
+    [Header("Time")]
     public float fireRate;
 
     public float reloadTime;
-
+    [Header("Damage")]
     public float damage;
 
+    
+    [Header("Ammo")]
     public int magSize;
-
+    [Header("Multipliers")]
     public float scopeMultiplier;
 
     public float bloomMultiplier;
 
     public float recoilMultiplier;
-
+    [Header("Particles")]
  
     public ParticleSystem particles;
-
+    [Header("Crosshairs")]
     public Sprite crossHair;
+    public Vector2 chSize;
 }
