@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Alteruna;
 using Alteruna.Trinity;
+using Unity.VisualScripting.Antlr3.Runtime;
 public class Shooting : AttributesSync
 {
   
@@ -14,10 +15,12 @@ public class Shooting : AttributesSync
     
 
     private int damage = 10;
+   
 
     // Called when the game starts, before the start function.
     void Awake()
     {
+        
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
     }
     // Called after void Awake();
@@ -83,4 +86,29 @@ public class Shooting : AttributesSync
     }
 
 
+    
+
+
 }
+
+public class Shotgun
+{
+    new Gun shotGun;
+    void Shoot(int initDamage)
+    {
+        RaycastHit shotGunHit;
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out shotGunHit, Mathf.Infinity))
+        {
+            float hitDistance = shotGunHit.distance;
+            
+        }
+    }
+
+    void Aim()
+    {
+        Camera.main.fieldOfView = shotGun.scopeMultiplier * shotGun.defaultFOV;
+            
+    }
+
+
+    }

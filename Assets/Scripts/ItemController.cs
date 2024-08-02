@@ -11,8 +11,6 @@ public class ItemController : MonoBehaviour
     [SerializeField] private GameObject crossHairObject;
 
     [SerializeField] internal Sprite defaultCH;
-    Image CH;
-    [SerializeField] internal Sprite ch;
     SpriteRenderer spriteRenderer;
 
     void Awake()
@@ -38,38 +36,39 @@ public class ItemController : MonoBehaviour
         switch (s)
         {
             case "1":
-                ClearEquipt();
-                guns[0].SetActive(true);
-                SetCrossHair(0);
+                SwitchGun(0);
                 break;
             case "2":
-                ClearEquipt();
-                guns[1].SetActive(true);
-                SetCrossHair(1);
+                SwitchGun(1);
                 break;
             case "3":
-                ClearEquipt();
-                guns[2].SetActive(true);
-                SetCrossHair(2);
+                SwitchGun(2);
                 break;
             case "4":
-                ClearEquipt();
-                guns[3].SetActive(true);
-                SetCrossHair(3);
+                SwitchGun(3);
                 break;
             case "5":
-                ClearEquipt();
-                guns[4].SetActive(true);
-                SetCrossHair(4);
+                SwitchGun(4);
                 break;   
-
             default:
-                ClearEquipt();
+                
                 break;   
         }    
     }
 
-    public void ClearEquipt()
+
+    // Function to deactivate all guns and set a new one active
+    private void SwitchGun(int index)
+    {
+        ClearEquipped();
+        if (index >= 0 && index < guns.Length)
+        {
+            guns[index].SetActive(true);
+            SetCrossHair(index);
+        }
+    }
+
+    public void ClearEquipped()
     {
         for (int i = 0; i < guns.Length; i++)
         {
@@ -77,10 +76,25 @@ public class ItemController : MonoBehaviour
         }
     }
 
+
     private void SetCrossHair(int index)
     {
-        spriteRenderer.sprite = guns[index].transform.GetComponent<Gun>().crossHair;
-        spriteRenderer.size = guns[index].transform.GetComponent<Gun>().chSize;
+        if (index >= 0 && index < guns.Length)
+        {
+            Gun gun = guns[index].GetComponent<Gun>();
+            if (gun != null)
+            {
+                spriteRenderer.sprite = gun.crossHair;
+            }
+            else
+            {
+                Debug.LogError("Gun component missing on gun at index " + index);
+            }
+        }
+        else
+        {
+            spriteRenderer.sprite = defaultCH;
+        }
     }
     
 }

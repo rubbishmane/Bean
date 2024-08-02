@@ -27,6 +27,12 @@ public class Gun : MonoBehaviour
  
     public ParticleSystem particles;
     [Header("Crosshairs")]
+    public int defaultFOV;
     public Sprite crossHair;
     public Vector2 chSize;
+
+    void Awake()
+    {
+        Camera.main.fieldOfView = defaultFOV;
+    }
 }
