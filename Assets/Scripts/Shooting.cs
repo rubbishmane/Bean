@@ -93,7 +93,7 @@ public class Shooting : AttributesSync
 
 public class Shotgun
 {
-    new Gun shotGun;
+    Gun shotGun;
     void Shoot(int initDamage)
     {
         RaycastHit shotGunHit;

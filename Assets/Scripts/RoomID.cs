@@ -17,7 +17,7 @@ public class RoomID : AttributesSync
     }
     public void Update()
     {
-        int id = Room.ID;
-        print(Room.ID);
+        //int id = Room.ID;
+        //print(Room.ID);
     }
 }

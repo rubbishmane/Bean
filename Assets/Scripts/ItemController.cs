@@ -11,12 +11,13 @@ public class ItemController : MonoBehaviour
     [SerializeField] private GameObject crossHairObject;
 
     [SerializeField] internal Sprite defaultCH;
-    SpriteRenderer spriteRenderer;
+    Image CH;
+    public Sprite ch;
 
     void Awake()
     {
-        spriteRenderer = crossHairObject.GetComponent<SpriteRenderer>();
-
+        crossHairObject = GameObject.Find("CrossHair");
+        CH = crossHairObject.GetComponent<Image>();
     }
     void Start()
     {
@@ -84,7 +85,8 @@ public class ItemController : MonoBehaviour
             Gun gun = guns[index].GetComponent<Gun>();
             if (gun != null)
             {
-                spriteRenderer.sprite = gun.crossHair;
+                CH.sprite = gun.crossHair;
+                CH.rectTransform.sizeDelta = gun.chSize;
             }
             else
             {
@@ -93,7 +95,7 @@ public class ItemController : MonoBehaviour
         }
         else
         {
-            spriteRenderer.sprite = defaultCH;
+            CH.sprite = defaultCH;
         }
     }
     

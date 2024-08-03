@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
  
     public ParticleSystem particles;
     [Header("Crosshairs")]
-    public int defaultFOV;
+    public int defaultFOV = 90;
     public Sprite crossHair;
     public Vector2 chSize;
 
