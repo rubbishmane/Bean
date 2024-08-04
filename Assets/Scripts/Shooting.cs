@@ -85,13 +85,18 @@ public class Shooting : AttributesSync
         ammoCount = maxAmmoCount;
     }
 
+    void DistanceReducedDamage(int initDmg)
+    {
+
+    }
+
 
     
 
 
 }
 
-public class Shotgun
+public class Shotgun : Shooting
 {
     Gun shotGun;
     void Shoot(int initDamage)
