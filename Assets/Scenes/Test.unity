@@ -150,13 +150,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198937526}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.37692276, y: 0.39774704, z: -0.5223103, w: 0.65339}
-  m_LocalPosition: {x: -4.62, y: -1.95, z: 10.55}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.4961293, y: 0.025899924, z: -0.04008877, w: 0.8669359}
+  m_LocalPosition: {x: -2.6, y: -0.9, z: 4.4}
+  m_LocalScale: {x: 0.49088, y: 0.49088, z: 0.49088}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236627116}
-  m_LocalEulerAnglesHint: {x: 65.237, y: 17.51, z: -66.019}
+  m_LocalEulerAnglesHint: {x: 59.576, y: 0.58, z: -4.963}
 --- !u!136 &198937528
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 84c69154fbb3a6340af3be219454fcbd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -560,13 +560,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920053123}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.37692276, y: 0.39774704, z: -0.5223103, w: 0.65339}
-  m_LocalPosition: {x: -7.77, y: 0.29, z: 9.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.4961293, y: 0.025899924, z: -0.04008877, w: 0.8669359}
+  m_LocalPosition: {x: -2.6, y: -0.9, z: 4.4}
+  m_LocalScale: {x: 0.49088, y: 0.49088, z: 0.49088}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236627116}
-  m_LocalEulerAnglesHint: {x: 65.237, y: 17.51, z: -66.019}
+  m_LocalEulerAnglesHint: {x: 59.576, y: 0.58, z: -4.963}
 --- !u!136 &1920053125
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 36a9a1a62d2cab24e9372c56a75f443b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
