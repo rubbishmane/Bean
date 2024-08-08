@@ -9,15 +9,15 @@ public class StartNetowkr : AttributesSync
 
 {
     [SerializeField] private TMP_InputField input;
-    public void CreateAndJoing()
+    public void Create()
     {
-        Multiplayer.CreateRoom("room", true, 1234, true, true, 2);
-        SceneManager.LoadScene("Waiting");
+        Multiplayer.CreateRoom(Multiplayer.GetUser().Name + " 's room");
+        Multiplayer.LoadScene("Game");
     }
 
     void JoinRoom(){
-        string roomName = input.text;
-        print("Joining Room:" + roomName);
+        Multiplayer.JoinFirstAvailable();
+        Multiplayer.LoadScene("Game");
     }
 }
 
