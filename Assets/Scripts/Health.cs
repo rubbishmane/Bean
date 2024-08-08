@@ -10,6 +10,7 @@ public class Health : AttributesSync
     
     public float health;
     private float maxHealth = 100f;
+    int count;
 
     //private OnDeath onDeath;
   
@@ -23,6 +24,7 @@ public class Health : AttributesSync
     public void Damage(int damage)
     {   
         BroadcastRemoteMethod(nameof(Damage2), damage);
+        count = Room.GetUserCount();
     }
     //Take damage 
     [SynchronizableMethod] 

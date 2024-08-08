@@ -416,10 +416,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: 
+  _uidString: a40c35f0-3b0f-4eaf-bb9a-972186c0f162
   Reliability: 1
   LocalMethodBehavior: 1
-  multiplayer: {fileID: 0}
+  multiplayer: {fileID: 2018672473}
 --- !u!4 &509315029
 Transform:
   m_ObjectHideFlags: 0
@@ -1243,7 +1243,19 @@ MonoBehaviour:
   AvatarSpawnLocations: []
   OnConnected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 509315027}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDisconnected:
     m_PersistentCalls:
       m_Calls: []
