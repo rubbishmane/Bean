@@ -4,18 +4,22 @@ using UnityEngine;
 using Alteruna;
 using UnityEngine.SceneManagement;
 using TMPro;
+using JetBrains.Annotations;
 
 public class StartNetowkr : AttributesSync
 
 {
-    [SerializeField] private TMP_InputField input;
+   public Multiplayer multiplayer;
     public void Create()
     {
+        DontDestroyOnLoad(multiplayer.gameObject);
         Multiplayer.CreateRoom(Multiplayer.GetUser().Name + " 's room");
         Multiplayer.LoadScene("Game");
+        
     }
 
-    void JoinRoom(){
+    public void JoinRoom(){
+        DontDestroyOnLoad(multiplayer.gameObject);
         Multiplayer.JoinFirstAvailable();
         Multiplayer.LoadScene("Game");
     }

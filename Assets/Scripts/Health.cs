@@ -24,7 +24,6 @@ public class Health : AttributesSync
     public void Damage(int damage)
     {   
         BroadcastRemoteMethod(nameof(Damage2), damage);
-        count = Room.GetUserCount();
     }
     //Take damage 
     [SynchronizableMethod] 
