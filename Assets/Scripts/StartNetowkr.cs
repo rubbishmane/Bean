@@ -9,17 +9,18 @@ using JetBrains.Annotations;
 public class StartNetowkr : AttributesSync
 
 {
-   public Multiplayer multiplayer;
+    List<Alteruna.Room> room = new List<Alteruna.Room>();
+    public Multiplayer multiplayer;
     public void Create()
     {
-        DontDestroyOnLoad(multiplayer.gameObject);
-        Multiplayer.CreateRoom(Multiplayer.GetUser().Name + " 's room");
+        
+        Multiplayer.CreateRoom("Room");
         Multiplayer.LoadScene("Game");
         
     }
 
-    public void JoinRoom(){
-        DontDestroyOnLoad(multiplayer.gameObject);
+    public void Connect(){
+        print("Join Attempted");
         Multiplayer.JoinFirstAvailable();
         Multiplayer.LoadScene("Game");
     }
