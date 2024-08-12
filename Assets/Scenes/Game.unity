@@ -355,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 420652072}
   m_Layer: 0
-  m_Name: Terrorist Spawn
+  m_Name: TerroristSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,10 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
-  _uidString: a40c35f0-3b0f-4eaf-bb9a-972186c0f162
-  Reliability: 1
-  LocalMethodBehavior: 1
   multiplayer: {fileID: 0}
+  playerCount: 0
   terroristSpawnObj: {fileID: 420652071}
   defenseSpawnObj: {fileID: 839629787}
 --- !u!4 &509315029
@@ -823,7 +821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839629788}
   m_Layer: 0
-  m_Name: Defense Spawn
+  m_Name: DefenseSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

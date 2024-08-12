@@ -5,35 +5,34 @@ using Alteruna;
 using Alteruna.Trinity;
 using Unity.VisualScripting.Antlr3.Runtime;
 
-public class SpawnPlayers : AttributesSync
+public class SpawnPlayers : CommunicationBridge
 {
     // Start is called before the first frame update
 
     public Multiplayer multiplayer;
     
-    [SynchronizableField][SerializeField] User whoIsTerrorist, whoIsDefence;
+    [SerializeField] User whoIsTerrorist, whoIsDefence;
  
-    [SerializeField][SynchronizableField]private int playerCount;
+    [SerializeField]private int playerCount;
 
     public GameObject terroristSpawnObj;
     public GameObject defenseSpawnObj;
 
     private Vector3 terroristSpawn;
     private Vector3 defenseSpawn;
-    bool isMax;
+    bool isMax = false;
     List<User> Users = new List<User>();
     Room room;
 
     
     
     void Awake()
-    {
-        multiplayer = GameObject.Find("Multiplayer Manager").GetComponent<Multiplayer>();
+    {   
         terroristSpawn = terroristSpawnObj.transform.position;
         defenseSpawn = defenseSpawnObj.transform.position;
         playerCount = 0;
-        isMax = false;
-        Users = new List<User>();
+
+        
 
     }
     void Update()
@@ -56,7 +55,7 @@ public class SpawnPlayers : AttributesSync
     void CheckPlayerCount()
     {
         playerCount = 0;
-        foreach (var user in multiplayer.GetUsers())
+        foreach (var user in Multiplayer.GetUsers())
         { 
             playerCount++;
             print(playerCount);

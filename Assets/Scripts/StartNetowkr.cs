@@ -10,10 +10,8 @@ public class StartNetowkr : AttributesSync
 
 {
     List<Alteruna.Room> room = new List<Alteruna.Room>();
-    public Multiplayer multiplayer;
     public void Create()
     {
-        
         Multiplayer.CreateRoom("Room");
         Multiplayer.LoadScene("Game");
         

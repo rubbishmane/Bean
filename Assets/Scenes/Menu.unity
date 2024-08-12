@@ -626,7 +626,6 @@ MonoBehaviour:
   _uidString: 296e6e67-3756-4882-a6d8-c267fa537c70
   Reliability: 1
   LocalMethodBehavior: 1
-  multiplayer: {fileID: 1743293146}
 --- !u!1 &479949168
 GameObject:
   m_ObjectHideFlags: 0
