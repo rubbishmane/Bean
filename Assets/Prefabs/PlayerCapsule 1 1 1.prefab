@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202637062494161477}
   - component: {fileID: 3969368249893308230}
+  - component: {fileID: 6406468036033224784}
   m_Layer: 6
   m_Name: ItemController
   m_TagString: Untagged
@@ -177,6 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcfb826e6f9f40341aeabb31aa157f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: cb90ab4c-f707-4d67-a3cc-5160a678a857
+  Reliability: 1
+  LocalMethodBehavior: 1
   guns:
   - {fileID: 3716224182498231243}
   - {fileID: 2282437032561865308}
@@ -186,6 +191,22 @@ MonoBehaviour:
   crossHairObject: {fileID: 0}
   defaultCH: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   thisAvatar: {fileID: 0}
+--- !u!114 &6406468036033224784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371571274098761678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 419518920, guid: 0ae8d181602a00248a82f64a684a1c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: 2222c029-c142-4cdd-901a-4bb472562355
+  Reliability: 1
+  LocalMethodBehavior: 1
 --- !u!1 &1823296824877551019
 GameObject:
   m_ObjectHideFlags: 0

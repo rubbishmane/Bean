@@ -12,12 +12,12 @@ public class StartNetowkr : AttributesSync
     List<Alteruna.Room> room = new List<Alteruna.Room>();
     public void Create()
     {
-        Multiplayer.CreateRoom("Room");
+        Multiplayer.CreateRoom("Room", false, 0, true);
         Multiplayer.LoadScene("Game");
-        
     }
 
-    public void Connect(){
+    public void Connect()
+    {
         print("Join Attempted");
         Multiplayer.JoinFirstAvailable();
         Multiplayer.LoadScene("Game");

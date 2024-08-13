@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Alteruna;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.UI;
 
-public class ItemController : MonoBehaviour
+public class ItemController : AttributesSync
 {
-    
     [SerializeField] internal GameObject[] guns;
-
     [SerializeField] private GameObject crossHairObject;
-
     [SerializeField] internal Sprite defaultCH;
     Image CH;
-
     private UIUpdater uIUpdater;
     public Alteruna.Avatar thisAvatar;
+
+    // Sync the active gun index across the network
+    
+   [SynchronizableField] private int activeGunIndex = -1;
 
     void Awake()
     {
@@ -24,25 +21,28 @@ public class ItemController : MonoBehaviour
         crossHairObject = GameObject.Find("CrossHair");
         CH = crossHairObject.GetComponent<Image>();
     }
+
     void Start()
     {
         for (int i = 0; i < guns.Length; i++)
         {
-            print(i);
             guns[i].SetActive(false);
         }
-        SetCrossHair(4);
+        SetCrossHair(4); // Default crosshair setup
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(thisAvatar == null)
+        if (thisAvatar == null)
         {
-            Debug.Log("avatar null");
+            Debug.Log("Avatar is null");
         }
+        else if (!thisAvatar.IsMe)
+        {
+            return;
+        }
+
         string s = Input.inputString;
-        print(s);
         switch (s)
         {
             case "1":
@@ -59,15 +59,12 @@ public class ItemController : MonoBehaviour
                 break;
             case "5":
                 SwitchGun(4);
-                break;   
+                break;
             default:
-                
-                break;   
-        }    
+                break;
+        }
     }
 
-
-    // Function to deactivate all guns and set a new one active
     private void SwitchGun(int index)
     {
         ClearEquipped();
@@ -75,6 +72,7 @@ public class ItemController : MonoBehaviour
         {
             guns[index].SetActive(true);
             SetCrossHair(index);
+            activeGunIndex = index; // Sync the active gun index
         }
     }
 
@@ -85,7 +83,6 @@ public class ItemController : MonoBehaviour
             guns[i].SetActive(false);
         }
     }
-
 
     private void SetCrossHair(int index)
     {
@@ -107,5 +104,13 @@ public class ItemController : MonoBehaviour
             CH.sprite = defaultCH;
         }
     }
-    
+
+    // Synchronize the active gun index across the network
+    private void OnSyncedAttributeChange()
+    {
+        if (activeGunIndex >= 0 && activeGunIndex < guns.Length)
+        {
+            SwitchGun(activeGunIndex);
+        }
+    }
 }
