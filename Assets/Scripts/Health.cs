@@ -42,11 +42,11 @@ public class Health : AttributesSync
        
         if(health <= 0f)
         {  
-            Die();
+            Application.Quit();
         }
     }
 
-        void Die()
+    void Die()
     {
         SceneManager.LoadScene("Respawn");
             // Destroy(transform.parent.gameObject);

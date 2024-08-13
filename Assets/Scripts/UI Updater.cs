@@ -14,7 +14,9 @@ public class UIUpdater : MonoBehaviour
 
     //Getting Ammo Script and Display
     private GameObject ammoCountObject;
+   
     private TextMeshProUGUI ammoCountText;
+    private TextMeshProUGUI healthText;
     private Shooting shootScript;
     //gameobject under player 
     [SerializeField] private GameObject shoot;
@@ -24,7 +26,7 @@ public class UIUpdater : MonoBehaviour
     //gameobject under player 
 
     [SerializeField] private GameObject Health;
-    private GameObject healthBarObject;
+    [SerializeField]private GameObject healthBarObject;
     private Healthbar healthBarScript;
     private Health healthScript;
 
@@ -42,7 +44,8 @@ public class UIUpdater : MonoBehaviour
         
         healthScript = Health.GetComponent<Health>();
         healthBarObject = GameObject.Find("HealthBar");
-        healthBarScript = healthBarObject.GetComponent<Healthbar>();
+        healthText = healthBarObject.GetComponent<TextMeshProUGUI>();
+        //healthBarScript = healthBarObject.GetComponent<Healthbar>();
     }
 
     void Start()
@@ -60,6 +63,7 @@ public class UIUpdater : MonoBehaviour
         if(!_avatar.IsMe)
             return;
         ammoCountText.text = "Ammo: " + shootScript.ammoCount.ToString();
-        healthBarScript.SetHealth(healthScript.health);
+        healthText.text = "Health: " + healthScript.health.ToString();
+        //healthBarScript.SetHealth(healthScript.health);
     }
 }

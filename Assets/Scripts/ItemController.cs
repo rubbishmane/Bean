@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 
 public class ItemController : MonoBehaviour
@@ -13,22 +14,18 @@ public class ItemController : MonoBehaviour
 
     [SerializeField] internal Sprite defaultCH;
     Image CH;
-    public Sprite ch;
 
-    private Alteruna.Avatar avatar;
+    private UIUpdater uIUpdater;
+    public Alteruna.Avatar thisAvatar;
 
     void Awake()
     {
-        avatar = GetComponent<Alteruna.Avatar>();
+        thisAvatar = GetComponentInParent<Alteruna.Avatar>();
         crossHairObject = GameObject.Find("CrossHair");
         CH = crossHairObject.GetComponent<Image>();
     }
     void Start()
     {
-        if(!avatar.IsMe)
-        {
-            return;
-        }
         for (int i = 0; i < guns.Length; i++)
         {
             print(i);
@@ -40,9 +37,9 @@ public class ItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!avatar.IsMe)
+        if(thisAvatar == null)
         {
-            return;
+            Debug.Log("avatar null");
         }
         string s = Input.inputString;
         print(s);

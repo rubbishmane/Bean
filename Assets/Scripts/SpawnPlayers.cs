@@ -21,6 +21,7 @@ public class SpawnPlayers : CommunicationBridge
     private Vector3 terroristSpawn;
     private Vector3 defenseSpawn;
     bool isMax = false;
+    bool should = true;
     List<User> Users = new List<User>();
     Room room;
 
@@ -39,11 +40,19 @@ public class SpawnPlayers : CommunicationBridge
     {
 
         if(playerCount == 2){isMax = true;}
+        if(should)
+        {TryConnect();}
+        
+    }
+
+    void TryConnect()
+    {
         if(isMax)
         {
             //AssignRoles();
             print("User Count: 2");
             Multiplayer.SpawnAvatar(GameObject.Find("DefenseSpawn").transform.position);
+            should = false;
             
         }
         else
@@ -52,6 +61,7 @@ public class SpawnPlayers : CommunicationBridge
             print("User Count: 1");
         }
     }
+    
     void CheckPlayerCount()
     {
         playerCount = 0;

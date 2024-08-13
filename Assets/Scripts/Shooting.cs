@@ -15,6 +15,8 @@ public class Shooting : AttributesSync
     
 
     private int damage = 10;
+
+    public Camera cam;
    
 
     // Called when the game starts, before the start function.
@@ -60,7 +62,7 @@ public class Shooting : AttributesSync
         Debug.Log("void Shoot");
         RaycastHit hit;
         //Shoots Raycast
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.Log("Raycast shot");
             //Checks to see if hit has a player tag
@@ -85,10 +87,10 @@ public class Shooting : AttributesSync
         ammoCount = maxAmmoCount;
     }
 
-    void DistanceReducedDamage(int initDmg)
-    {
+    // void DistanceReducedDamage(int initDmg)
+    // {
 
-    }
+    // }
 
 
     
@@ -96,24 +98,24 @@ public class Shooting : AttributesSync
 
 }
 
-public class Shotgun : Shooting
-{
-    Gun shotGun;
-    void Shoot(int initDamage)
-    {
-        RaycastHit shotGunHit;
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out shotGunHit, Mathf.Infinity))
-        {
-            float hitDistance = shotGunHit.distance;
+// public class Shotgun : Shooting
+// {
+//     Gun shotGun;
+//     void Shoot(int initDamage)
+//     {
+//         RaycastHit shotGunHit;
+//         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out shotGunHit, Mathf.Infinity))
+//         {
+//             float hitDistance = shotGunHit.distance;
             
-        }
-    }
+//         }
+//     }
 
-    void Aim()
-    {
-        Camera.main.fieldOfView = shotGun.scopeMultiplier * shotGun.defaultFOV;
+//     void Aim()
+//     {
+//         Camera.main.fieldOfView = shotGun.scopeMultiplier * shotGun.defaultFOV;
             
-    }
+//     }
 
 
-    }
+//}
