@@ -4,6 +4,7 @@ using UnityEngine;
 using Alteruna;
 using Alteruna.Trinity;
 using Unity.VisualScripting.Antlr3.Runtime;
+using System;
 public class Shooting : AttributesSync
 {
   
@@ -17,17 +18,24 @@ public class Shooting : AttributesSync
     private int damage = 10;
 
     public Camera cam;
-   
+
+    ItemController ic;
+
+    float shotDistance;
+
+    
 
     // Called when the game starts, before the start function.
     void Awake()
     {
-        
+
+        ic = GetComponent<ItemController>();
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
     }
     // Called after void Awake();
     void Start()
     {   
+        currentGunIndex = ic.currentGunIndex;
         ammoCount = maxAmmoCount;
     }
 
@@ -64,6 +72,8 @@ public class Shooting : AttributesSync
         //Shoots Raycast
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
         {
+            shotDistance = hit.distance;
+            
             Debug.Log("Raycast shot");
             //Checks to see if hit has a player tag
             if(hit.transform.CompareTag("Player"))
@@ -86,11 +96,12 @@ public class Shooting : AttributesSync
         }
         ammoCount = maxAmmoCount;
     }
-
-    // void DistanceReducedDamage(int initDmg)
-    // {
-
-    // }
+    int DistanceReducedDamage(int initDmg, float distance)
+    {
+        int finalDmg;
+        finalDmg = Math.Pow(-20, distance - shotDistance) + ;
+        return finalDmg;
+    }
 
 
     

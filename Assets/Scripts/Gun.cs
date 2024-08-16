@@ -36,3 +36,4 @@ public class Gun : MonoBehaviour
         Camera.main.fieldOfView = defaultFOV;
     }
 }
+

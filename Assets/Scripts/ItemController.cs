@@ -5,18 +5,20 @@ using UnityEngine.UI;
 public class ItemController : AttributesSync
 {
     [SerializeField] internal GameObject[] guns;
-    [SerializeField] private GameObject crossHairObject;
+    private GameObject crossHairObject;
     [SerializeField] internal Sprite defaultCH;
     Image CH;
     private UIUpdater uIUpdater;
     public Alteruna.Avatar thisAvatar;
+    public int currentGunIndex; 
 
-    // Sync the active gun index across the network
-    
-   [SynchronizableField] private int activeGunIndex = -1;
+    private const string MethodName = "SyncGun";
+
+    int[] maxBulletDistance = {20, 30, 12, 14, 150} ;
 
     void Awake()
     {
+        currentGunIndex = -1;
         thisAvatar = GetComponentInParent<Alteruna.Avatar>();
         crossHairObject = GameObject.Find("CrossHair");
         CH = crossHairObject.GetComponent<Image>();
@@ -67,15 +69,11 @@ public class ItemController : AttributesSync
 
     private void SwitchGun(int index)
     {
-        ClearEquipped();
-        if (index >= 0 && index < guns.Length)
-        {
-            guns[index].SetActive(true);
-            SetCrossHair(index);
-            activeGunIndex = index; // Sync the active gun index
-        }
+        // Sync the gun switch across all clients
+        InvokeRemoteMethod(MethodName, UserId.AllInclusive, index);
     }
 
+    // Method to clear all equipped guns
     public void ClearEquipped()
     {
         for (int i = 0; i < guns.Length; i++)
@@ -84,6 +82,7 @@ public class ItemController : AttributesSync
         }
     }
 
+    // Method to set the crosshair based on the gun index
     private void SetCrossHair(int index)
     {
         if (index >= 0 && index < guns.Length)
@@ -105,12 +104,16 @@ public class ItemController : AttributesSync
         }
     }
 
-    // Synchronize the active gun index across the network
-    private void OnSyncedAttributeChange()
+    // Method to be invoked on all clients to sync gun switch
+    [SynchronizableMethod]
+    public void SyncGun(int index)
     {
-        if (activeGunIndex >= 0 && activeGunIndex < guns.Length)
+        ClearEquipped();
+        if (index >= 0 && index < guns.Length)
         {
-            SwitchGun(activeGunIndex);
+            guns[index].SetActive(true);
+            SetCrossHair(index);
+            currentGunIndex = index;
         }
     }
 }
