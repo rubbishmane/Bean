@@ -21,7 +21,7 @@ public class Health : AttributesSync
         //onDeath = transform.parent.GetComponent<OnDeath>();
     }
     //Broadcast function over network
-    public void Damage(int damage)
+    public void Damage(float damage)
     {   
         BroadcastRemoteMethod(nameof(Damage2), damage);
     }

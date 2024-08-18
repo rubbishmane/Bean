@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     [Header("Damage")]
     public float damage;
 
+    public float initDistance;
+
     
     [Header("Ammo")]
     public int magSize;

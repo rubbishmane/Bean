@@ -5,6 +5,7 @@ using Alteruna;
 using Alteruna.Trinity;
 using Unity.VisualScripting.Antlr3.Runtime;
 using System;
+using Unity.VisualScripting;
 public class Shooting : AttributesSync
 {
   
@@ -21,7 +22,12 @@ public class Shooting : AttributesSync
 
     ItemController ic;
 
+    Gun currentGun;
+
     float shotDistance;
+    int currentGunIndex;
+
+    float maxDistance;
 
     
 
@@ -29,19 +35,25 @@ public class Shooting : AttributesSync
     void Awake()
     {
 
-        ic = GetComponent<ItemController>();
+        ic = transform.parent.GetComponent<ItemController>();
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
     }
     // Called after void Awake();
     void Start()
     {   
-        currentGunIndex = ic.currentGunIndex;
+        if(ic != null)
+        {
+            
+        }
+        currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
         ammoCount = maxAmmoCount;
+        float maxDistance = currentGun.initDistance;
     }
 
     //Called every frame
     void Update()
     {   
+        currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
         //reqeuires avatar to be you or the function exits.
         if(!_avatar.IsMe)
             return;
@@ -57,10 +69,17 @@ public class Shooting : AttributesSync
 
         
     }
+
+    void LateUpdate()
+    {
+        print("ThisWorkes");
+        currentGunIndex = ic.currentGunIndex;
+    }
     //Called when LMB is clicked
     
     void Shoot(int dmg)
     {
+        
         if(!_avatar.IsMe)
         {
             return;
@@ -73,6 +92,7 @@ public class Shooting : AttributesSync
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
         {
             shotDistance = hit.distance;
+
             
             Debug.Log("Raycast shot");
             //Checks to see if hit has a player tag
@@ -83,7 +103,15 @@ public class Shooting : AttributesSync
                 //gets oppositions health component and take away health.
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
-                _enemyHealth.Damage(dmg);
+                print(shotDistance);
+                float DistanceReducedDamage(float initDmg, float distanceOfShot)
+                {
+                    float finalDmg;
+                    finalDmg = (float)Math.Pow(-20,    - distanceOfShot) + currentGun.damage;
+                    return finalDmg ;
+                }
+
+                _enemyHealth.Damage(DistanceReducedDamage(currentGun.GetComponent<Gun>().damage, shotDistance));
             }
         }
     }
@@ -96,13 +124,9 @@ public class Shooting : AttributesSync
         }
         ammoCount = maxAmmoCount;
     }
-    int DistanceReducedDamage(int initDmg, float distance)
-    {
-        int finalDmg;
-        finalDmg = Math.Pow(-20, distance - shotDistance) + ;
-        return finalDmg;
-    }
 
+    //Params: intial damage the gun does before distance reducer, distance of shot
+   
 
     
 
@@ -112,7 +136,7 @@ public class Shooting : AttributesSync
 // public class Shotgun : Shooting
 // {
 //     Gun shotGun;
-//     void Shoot(int initDamage)
+//     void Shoot(int initDamage)XZ
 //     {
 //         RaycastHit shotGunHit;
 //         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out shotGunHit, Mathf.Infinity))
