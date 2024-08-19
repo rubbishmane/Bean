@@ -43,11 +43,12 @@ public class Shooting : AttributesSync
     {   
         if(ic != null)
         {
-            
+            currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
+            maxDistance = currentGun.initDistance;
         }
-        currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
+        
         ammoCount = maxAmmoCount;
-        float maxDistance = currentGun.initDistance;
+        
     }
 
     //Called every frame
@@ -72,8 +73,8 @@ public class Shooting : AttributesSync
 
     void LateUpdate()
     {
-        print("ThisWorkes");
         currentGunIndex = ic.currentGunIndex;
+        maxDistance = currentGun.initDistance;
     }
     //Called when LMB is clicked
     
@@ -104,14 +105,18 @@ public class Shooting : AttributesSync
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
                 print(shotDistance);
-                float DistanceReducedDamage(float initDmg, float distanceOfShot)
+                float DistanceReducedDamage(float distanceOfShot)
                 {
+                    print("Init Dmg: " + currentGun.damage);
+                    
                     float finalDmg;
-                    finalDmg = (float)Math.Pow(-20,    - distanceOfShot) + currentGun.damage;
+                    finalDmg = (float)Math.Pow(-20, distanceOfShot- maxDistance) + currentGun.damage;
                     return finalDmg ;
                 }
+                
 
-                _enemyHealth.Damage(DistanceReducedDamage(currentGun.GetComponent<Gun>().damage, shotDistance));
+                _enemyHealth.Damage(DistanceReducedDamage(shotDistance));
+                print("DMG after: " + DistanceReducedDamage(shotDistance));
             }
         }
     }
@@ -154,3 +159,4 @@ public class Shooting : AttributesSync
 
 
 //}
+

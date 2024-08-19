@@ -13,8 +13,6 @@ public class Health : AttributesSync
     int count;
 
     //private OnDeath onDeath;
-  
-
     void Start()
     {
         health = maxHealth;
