@@ -25,7 +25,7 @@ public class Health : AttributesSync
     }
     //Take damage 
     [SynchronizableMethod] 
-    void Damage2 (int dmg)
+    void Damage2 (float dmg)
     {
         health -= dmg; 
     }

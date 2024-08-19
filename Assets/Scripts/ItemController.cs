@@ -14,11 +14,11 @@ public class ItemController : AttributesSync
 
     private const string MethodName = "SyncGun";
 
-    int[] maxBulletDistance = {20, 30, 12, 14, 150} ;
+    int[] maxBulletDistance = {20, 30, 12, 14, 150};
+    public int[] maxAmmoCount = {7, 25, 5, 30, 1};
 
     void Awake()
-    {
-        currentGunIndex = -1;
+    {   
         thisAvatar = GetComponentInParent<Alteruna.Avatar>();
         crossHairObject = GameObject.Find("CrossHair");
         CH = crossHairObject.GetComponent<Image>();
@@ -26,11 +26,13 @@ public class ItemController : AttributesSync
 
     void Start()
     {
+        SwitchGun(0);
+        currentGunIndex = 0;
         for (int i = 0; i < guns.Length; i++)
         {
             guns[i].SetActive(false);
         }
-        SetCrossHair(4); // Default crosshair setup
+        
     }
 
     void Update()

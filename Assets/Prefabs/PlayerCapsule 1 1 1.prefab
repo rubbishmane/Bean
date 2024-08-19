@@ -191,6 +191,7 @@ MonoBehaviour:
   defaultCH: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   thisAvatar: {fileID: 0}
   currentGunIndex: 0
+  maxAmmoCount: 0700000019000000050000001e00000001000000
 --- !u!114 &6406468036033224784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +702,7 @@ MonoBehaviour:
   _avatar: {fileID: 0}
   ammoCount: 0
   cam: {fileID: 1615275281776249277}
+  ic: {fileID: 3969368249893308230}
 --- !u!1 &7463750835116707902
 GameObject:
   m_ObjectHideFlags: 0

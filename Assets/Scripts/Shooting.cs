@@ -13,14 +13,14 @@ public class Shooting : AttributesSync
     public  Alteruna.Avatar _avatar;
 
     public int ammoCount;
-    private int maxAmmoCount = 10;
+    
     
 
     private int damage = 10;
 
     public Camera cam;
 
-    ItemController ic;
+    public ItemController ic;
 
     Gun currentGun;
 
@@ -35,7 +35,7 @@ public class Shooting : AttributesSync
     void Awake()
     {
 
-        ic = transform.parent.GetComponent<ItemController>();
+       
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
     }
     // Called after void Awake();
@@ -46,8 +46,13 @@ public class Shooting : AttributesSync
             currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
             maxDistance = currentGun.initDistance;
         }
+        else
+        {
+            Debug.Log("Item controller ic variable not found");
+        }
+
         
-        ammoCount = maxAmmoCount;
+        ammoCount = ic.maxAmmoCount[currentGunIndex];
         
     }
 
@@ -127,7 +132,7 @@ public class Shooting : AttributesSync
         {
             return;
         }
-        ammoCount = maxAmmoCount;
+        ammoCount = ic.maxAmmoCount[currentGunIndex];
     }
 
     //Params: intial damage the gun does before distance reducer, distance of shot
