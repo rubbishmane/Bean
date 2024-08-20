@@ -114,6 +114,7 @@ public class Shooting : AttributesSync
                 print(shotDistance);
                 float DistanceReducedDamage(float distanceOfShot)
                 {
+                    
                     Debug.Log("Init Dmg: " + currentGun.baseDamage);
                     
                     float finalDmg;
