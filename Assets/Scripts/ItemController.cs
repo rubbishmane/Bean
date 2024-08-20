@@ -16,6 +16,7 @@ public class ItemController : AttributesSync
 
     int[] maxBulletDistance = {20, 30, 12, 14, 150};
     public int[] AmmoCount = {7, 25, 5, 30, 1};
+    [HideInInspector] public int[] maxAmmoCount = {7, 25, 5, 30, 1};
 
     void Awake()
     {   

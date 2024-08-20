@@ -36,8 +36,6 @@ public class Shooting : AttributesSync
     // Called when the game starts, before the start function.
     void Awake()
     {
-
-       
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
     }
     // Called after void Awake();
@@ -45,6 +43,7 @@ public class Shooting : AttributesSync
     {   
         if(ic != null)
         {
+            currentGunIndex = ic.currentGunIndex;
             currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
             maxDistance = currentGun.initDistance;
         }
@@ -53,20 +52,19 @@ public class Shooting : AttributesSync
             Debug.Log("Item controller ic variable not found");
         }
 
-        
         ammoCount = ic.AmmoCount[currentGunIndex];
-        
     }
 
     //Called every frame
     void Update()
     {   
         currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
+        ammoCount = ic.AmmoCount[currentGunIndex];
         //reqeuires avatar to be you or the function exits.
         if(!_avatar.IsMe)
             return;
 
-        if(Input.GetMouseButtonDown(0) && ammoCount >= 1 )
+        if(Input.GetMouseButtonDown(0) && ic.AmmoCount[currentGunIndex] >= 1 )
         {
             Shoot(damage);
         }
@@ -112,9 +110,10 @@ public class Shooting : AttributesSync
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
                 print(shotDistance);
+
+
                 float DistanceReducedDamage(float distanceOfShot)
                 {
-                    
                     Debug.Log("Init Dmg: " + currentGun.baseDamage);
                     
                     float finalDmg;
@@ -128,8 +127,6 @@ public class Shooting : AttributesSync
                     //Return a rounded value of finalDmg, to three significant figures
                     return (float)Math.Round(finalDmg, 3);
                 }
-                
-
                 _enemyHealth.Damage(DistanceReducedDamage(shotDistance));
                 Debug.Log("DMG after: " + DistanceReducedDamage(shotDistance));
             }
@@ -143,6 +140,7 @@ public class Shooting : AttributesSync
             return;
         }
         ammoCount = ic.maxAmmoCount[currentGunIndex];
+        ic.AmmoCount[currentGunIndex] = ic.maxAmmoCount[currentGunIndex];
     }
 
     //Params: intial damage the gun does before distance reducer, distance of shot

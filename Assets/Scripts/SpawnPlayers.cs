@@ -11,7 +11,7 @@ public class SpawnPlayers : CommunicationBridge
 
     public Multiplayer multiplayer;
     
-    [SerializeField] User whoIsTerrorist, whoIsDefence;
+    [SerializeField] User terrorist, defence;
  
     [SerializeField]private int playerCount;
 
@@ -23,7 +23,9 @@ public class SpawnPlayers : CommunicationBridge
     bool isMax = false;
     bool should = true;
     List<User> Users = new List<User>();
+    private User localUser;
     Room room;
+    
 
     
     
@@ -32,9 +34,14 @@ public class SpawnPlayers : CommunicationBridge
         terroristSpawn = terroristSpawnObj.transform.position;
         defenseSpawn = defenseSpawnObj.transform.position;
         playerCount = 0;
-
+        
+        multiplayer = GameObject.Find("Multiplayer Manager").GetComponent<Multiplayer>();
         
 
+    }
+    void Start()
+    {
+        localUser = multiplayer.Me;
     }
     void Update()
     {
@@ -51,7 +58,10 @@ public class SpawnPlayers : CommunicationBridge
         {
             //AssignRoles();
             print("User Count: 2");
-            Multiplayer.SpawnAvatar(GameObject.Find("DefenseSpawn").transform.position);
+            Users.Add(localUser);
+            //Multiplayer.SpawnAvatar(GameObject.Find("DefenseSpawn").transform.position);
+            AssignRoles();
+
             should = false;
             
         }
@@ -72,34 +82,34 @@ public class SpawnPlayers : CommunicationBridge
         }
     }
 
-    // void AssignRoles()
-    // {   
-    //     whoIsTerrorist = Users[Random.Range(0,1)];
+    void AssignRoles()
+    {   
+        terrorist = Users[Random.Range(0,1)];
         
-    //     if(whoIsTerrorist != multiplayer.GetUser())
-    //     {   
-    //         whoIsDefence = multiplayer.GetUser();
-    //     }
-    //     print(whoIsDefence.Name);
-    //     SpawnPlayer();
-    // }
+        
+        if(terrorist != multiplayer.GetUser())
+        {   
+            defence = multiplayer.GetUser();
+        }
+        SpawnPlayer();
+    }
 
-    // void SpawnPlayer()
-    // {
-    //     if(whoIsDefence == multiplayer.GetUser())
-    //     {
-    //         multiplayer.SpawnAvatar(defenseSpawn);
-    //     }
-    //     else if(whoIsTerrorist == multiplayer.GetUser())
-    //     {
-    //         multiplayer.SpawnAvatar(terroristSpawn);
-    //     }
-    //     else
-    //     {
+    void SpawnPlayer()
+    {
+        if(defence == multiplayer.GetUser())
+        {
+            multiplayer.SpawnAvatar(defenseSpawn);
+        }
+        else if(terrorist == multiplayer.GetUser())
+        {
+            multiplayer.SpawnAvatar(terroristSpawn);
+        }
+        else
+        {
             
-    //         Debug.Log("Roles are not set");
-    //     }
-    // }
+            Debug.Log("Roles are not set");
+        }
+    }
 }
 
 
