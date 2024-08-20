@@ -54,7 +54,7 @@ public class Shooting : AttributesSync
         }
 
         
-        ammoCount = ic.maxAmmoCount[currentGunIndex];
+        ammoCount = ic.AmmoCount[currentGunIndex];
         
     }
 
@@ -92,7 +92,7 @@ public class Shooting : AttributesSync
         {
             return;
         }
-        ammoCount -= 1;
+        ic.AmmoCount[currentGunIndex] -= 1;
         
         Debug.Log("void Shoot");
         RaycastHit hit;

@@ -15,7 +15,7 @@ public class ItemController : AttributesSync
     private const string MethodName = "SyncGun";
 
     int[] maxBulletDistance = {20, 30, 12, 14, 150};
-    public int[] maxAmmoCount = {7, 25, 5, 30, 1};
+    public int[] AmmoCount = {7, 25, 5, 30, 1};
 
     void Awake()
     {   
