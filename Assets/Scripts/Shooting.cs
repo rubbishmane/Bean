@@ -29,6 +29,8 @@ public class Shooting : AttributesSync
 
     float maxDistance;
 
+    float distanceFactor = 30f;
+
     
 
     // Called when the game starts, before the start function.
@@ -112,16 +114,23 @@ public class Shooting : AttributesSync
                 print(shotDistance);
                 float DistanceReducedDamage(float distanceOfShot)
                 {
-                    print("Init Dmg: " + currentGun.damage);
+                    Debug.Log("Init Dmg: " + currentGun.baseDamage);
                     
                     float finalDmg;
-                    finalDmg = (float)Math.Pow(-20, distanceOfShot- maxDistance) + currentGun.damage;
-                    return finalDmg ;
+                    finalDmg = -(float)Math.Pow(2, distanceOfShot - distanceFactor) + currentGun.baseDamage;
+                    
+                    if(finalDmg <=7)
+                    {
+                        //return zero if the bullets finalDmg is not greater then the minDamage of the bullet.
+                        return 0f;
+                    }
+                    //Return a rounded value of finalDmg, to three significant figures
+                    return (float)Math.Round(finalDmg, 3);
                 }
                 
 
                 _enemyHealth.Damage(DistanceReducedDamage(shotDistance));
-                print("DMG after: " + DistanceReducedDamage(shotDistance));
+                Debug.Log("DMG after: " + DistanceReducedDamage(shotDistance));
             }
         }
     }

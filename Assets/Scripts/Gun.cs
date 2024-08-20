@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
 
     public float reloadTime;
     [Header("Damage")]
-    public float damage;
+    public float baseDamage;
 
     public float initDistance;
 

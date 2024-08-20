@@ -956,7 +956,7 @@ MonoBehaviour:
   isEquipt: 0
   fireRate: 0
   reloadTime: 0
-  damage: 125
+  baseDamage: 90
   initDistance: 150
   magSize: 1
   scopeMultiplier: 0
@@ -1071,7 +1071,7 @@ MonoBehaviour:
   isEquipt: 0
   fireRate: 0
   reloadTime: 0
-  damage: 10
+  baseDamage: 14
   initDistance: 20
   magSize: 7
   scopeMultiplier: 0
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   isEquipt: 0
   fireRate: 0
   reloadTime: 0
-  damage: 12
+  baseDamage: 11
   initDistance: 20
   magSize: 30
   scopeMultiplier: 0
@@ -1337,7 +1337,7 @@ MonoBehaviour:
   isEquipt: 0
   fireRate: 0
   reloadTime: 0
-  damage: 70
+  baseDamage: 60
   initDistance: 12
   magSize: 5
   scopeMultiplier: 0
@@ -1467,7 +1467,7 @@ MonoBehaviour:
   isEquipt: 0
   fireRate: 0
   reloadTime: 0
-  damage: 20
+  baseDamage: 20
   initDistance: 35
   magSize: 21
   scopeMultiplier: 0
