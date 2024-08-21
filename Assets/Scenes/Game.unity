@@ -753,6 +753,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplayer: {fileID: 0}
+  _uidString: cfa09a10-481c-4a26-89b7-e6fd59fee028
+  Reliability: 1
+  LocalMethodBehavior: 1
   multiplayer: {fileID: 0}
   playerCount: 0
   terroristSpawnObj: {fileID: 420652071}

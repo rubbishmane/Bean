@@ -5,11 +5,8 @@ using Alteruna;
 using Alteruna.Trinity;
 using Unity.VisualScripting.Antlr3.Runtime;
 
-public class SpawnPlayers : CommunicationBridge
+public class SpawnPlayers : AttributesSync
 {
-    // Start is called before the first frame update
-
-    public Multiplayer multiplayer;
     
     [SerializeField] User terrorist, defence;
  
@@ -31,17 +28,15 @@ public class SpawnPlayers : CommunicationBridge
     
     void Awake()
     {   
-        terroristSpawn = terroristSpawnObj.transform.position;
-        defenseSpawn = defenseSpawnObj.transform.position;
+    
         playerCount = 0;
-        
-        multiplayer = GameObject.Find("Multiplayer Manager").GetComponent<Multiplayer>();
         
 
     }
     void Start()
     {
-        localUser = multiplayer.Me;
+        terroristSpawn = terroristSpawnObj.transform.position;
+        defenseSpawn = defenseSpawnObj.transform.position;
     }
     void Update()
     {
@@ -58,9 +53,9 @@ public class SpawnPlayers : CommunicationBridge
         {
             //AssignRoles();
             print("User Count: 2");
-            Users.Add(localUser);
+            Users = Multiplayer.GetUsers();
             //Multiplayer.SpawnAvatar(GameObject.Find("DefenseSpawn").transform.position);
-            AssignRoles();
+            BroadcastRemoteMethod(nameof(AssignRoles), Random.Range(0,1));
 
             should = false;
             
@@ -81,28 +76,28 @@ public class SpawnPlayers : CommunicationBridge
             print(playerCount);
         }
     }
-
-    void AssignRoles()
+    [SynchronizableMethod]
+    void AssignRoles(int x)
     {   
-        terrorist = Users[Random.Range(0,1)];
+        terrorist = Users[x];
         
         
-        if(terrorist != multiplayer.GetUser())
+        if(terrorist != Multiplayer.Me)
         {   
-            defence = multiplayer.GetUser();
+            defence = Multiplayer.Me;
         }
         SpawnPlayer();
     }
 
     void SpawnPlayer()
     {
-        if(defence == multiplayer.GetUser())
+        if(defence == Multiplayer.Me)
         {
-            multiplayer.SpawnAvatar(defenseSpawn);
+            Multiplayer.SpawnAvatar(defenseSpawn);
         }
-        else if(terrorist == multiplayer.GetUser())
+        else if(terrorist == Multiplayer.Me)
         {
-            multiplayer.SpawnAvatar(terroristSpawn);
+            Multiplayer.SpawnAvatar(terroristSpawn);
         }
         else
         {
