@@ -4,11 +4,12 @@ using UnityEngine;
 using Alteruna;
 using Alteruna.Trinity;
 using Unity.VisualScripting.Antlr3.Runtime;
+using JetBrains.Annotations;
 
 public class SpawnPlayers : AttributesSync
 {
     
-    [SerializeField] User terrorist, defence;
+    [SerializeField] public User terrorist, defence;
  
     [SerializeField]private int playerCount;
 
@@ -22,25 +23,29 @@ public class SpawnPlayers : AttributesSync
     List<User> Users = new List<User>();
     private User localUser;
     Room room;
+    int v;
+
+    public string theTerroristsName;
     
 
     
     
     void Awake()
     {   
-    
+        isMax = false;
         playerCount = 0;
         
-
+    
     }
     void Start()
     {
+        CheckPlayerCount();
         terroristSpawn = terroristSpawnObj.transform.position;
         defenseSpawn = defenseSpawnObj.transform.position;
     }
     void Update()
     {
-
+        CheckPlayerCount();
         if(playerCount == 2){isMax = true;}
         if(should)
         {TryConnect();}
@@ -51,11 +56,19 @@ public class SpawnPlayers : AttributesSync
     {
         if(isMax)
         {
+            if(Multiplayer.GetUser().IsHost)
+            {
+                v = Random.Range(0,2);
+                print("random int :" + v);
+                terrorist = Users[v];
+                theTerroristsName = Users[v].Name;
+                BroadcastRemoteMethod(nameof(AssignRoles));
+            }
             //AssignRoles();
             print("User Count: 2");
             Users = Multiplayer.GetUsers();
             //Multiplayer.SpawnAvatar(GameObject.Find("DefenseSpawn").transform.position);
-            BroadcastRemoteMethod(nameof(AssignRoles), Random.Range(0,1));
+            
 
             should = false;
             
@@ -78,24 +91,39 @@ public class SpawnPlayers : AttributesSync
     }
     [SynchronizableMethod]
     void AssignRoles(int x)
-    {   
-        terrorist = Users[x];
-        
-        
-        if(terrorist != Multiplayer.Me)
-        {   
-            defence = Multiplayer.Me;
+    {
+        Users = Multiplayer.GetUsers();  // Ensure the Users list is populated
+        Debug.Log("Number of users: " + Users.Count);
+
+                    
+        Debug.Log(terrorist.Name + " is Terrorist");
+
+        if (theTerroristsName == Multiplayer.Me.Name)
+        {
+            Debug.Log("I am the terrorist");
         }
+        else
+        {
+                
+            Debug.Log(defence.Name + " is Defence");
+        }
+
         SpawnPlayer();
+        
+        
+        
+        Debug.LogError("Invalid index for assigning roles. Index: " + x + ", Users Count: " + Users.Count);
+        
     }
+
 
     void SpawnPlayer()
     {
-        if(defence == Multiplayer.Me)
+        if(theTerroristsName != Multiplayer.Me.Name)
         {
             Multiplayer.SpawnAvatar(defenseSpawn);
         }
-        else if(terrorist == Multiplayer.Me)
+        else if(theTerroristsName == Multiplayer.Me.Name)
         {
             Multiplayer.SpawnAvatar(terroristSpawn);
         }
