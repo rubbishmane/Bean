@@ -79,16 +79,16 @@ public class SpawnPlayers : AttributesSync
             print("User Count: 1");
         }
     }
-    
     void CheckPlayerCount()
     {
         playerCount = 0;
+        
         foreach (var user in Multiplayer.GetUsers())
         { 
             playerCount++;
             print(playerCount);
         }
-    }
+    } 
     //[SynchronizableMethod]
     // void AssignRoles(int x)
     // {
@@ -133,7 +133,7 @@ public class SpawnPlayers : AttributesSync
     //         Debug.Log("Roles are not set");
     //     }
     // }
-}
+} 
 
 
 
