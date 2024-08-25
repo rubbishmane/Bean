@@ -60,6 +60,7 @@ public class SpawnPlayers : AttributesSync
     void CheckPlayerCount()
     {
         playerCount = 0;
+        
         foreach (var user in Multiplayer.GetUsers())
         {
             playerCount++;
