@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alteruna; 
+using Alteruna.Trinity;
 using UnityEngine.SceneManagement;
 //using Alteruna.Multiplayer;
 
@@ -41,7 +42,7 @@ public class Health : AttributesSync
         if(health <= 0f)
         {  
             //Die();
-            Application.Quit();
+            //Application.Quit();
         }
     }
 
