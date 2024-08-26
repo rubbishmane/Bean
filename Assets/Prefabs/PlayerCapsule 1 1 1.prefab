@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &399357724397574103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6637743023402289272}
+  - component: {fileID: 9041751096912549221}
+  m_Layer: 0
+  m_Name: Healing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6637743023402289272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399357724397574103}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3819986, y: 0.8925311, z: 1.4409543}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7326254143173559695}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9041751096912549221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399357724397574103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e7e970efc1aec4f865b5e216c0f6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &820827352817393376
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +235,7 @@ MonoBehaviour:
   defaultCH: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   thisAvatar: {fileID: 0}
   currentGunIndex: 0
+  AmmoCount: 0700000019000000050000001e00000001000000
   maxAmmoCount: 0700000019000000050000001e00000001000000
 --- !u!114 &6406468036033224784
 MonoBehaviour:
@@ -485,6 +530,7 @@ Transform:
   - {fileID: 3703182866007532544}
   - {fileID: 5646223005653477944}
   - {fileID: 202637062494161477}
+  - {fileID: 6637743023402289272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &9019730613748855327
