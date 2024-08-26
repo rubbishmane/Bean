@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     
     public void ApplyHealthRegeneration()
     {
-        // Start the health regeneration process over 10seconds for 50% of max health.
+        // Start the health regeneration process over 10seconds for 50% of max health.s
         StartCoroutine(RegenerateHealthOverTime(10f, maxHealth * 0.5f));
     }
 
