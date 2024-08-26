@@ -31,6 +31,9 @@ public class Shooting : AttributesSync
 
     float distanceFactor = 30f;
 
+    bool canShoot;
+
+    float fireRate;
     
 
     // Called when the game starts, before the start function.
@@ -53,6 +56,7 @@ public class Shooting : AttributesSync
         }
 
         ammoCount = ic.AmmoCount[currentGunIndex];
+        fireRate = currentGun.fireRate;
     }
 
     //Called every frame
@@ -60,13 +64,15 @@ public class Shooting : AttributesSync
     {   
         currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
         ammoCount = ic.AmmoCount[currentGunIndex];
+        fireRate = currentGun.fireRate;
         //reqeuires avatar to be you or the function exits.
         if(!_avatar.IsMe)
             return;
 
-        if(Input.GetMouseButtonDown(0) && ic.AmmoCount[currentGunIndex] >= 1 )
+        if(Input.GetMouseButton(0) && ic.AmmoCount[currentGunIndex] >= 1 && canShoot)
         {
             Shoot(damage);
+
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
@@ -85,33 +91,25 @@ public class Shooting : AttributesSync
     
     void Shoot(int dmg)
     {
-        
         if(!_avatar.IsMe)
         {
             return;
         }
         ic.AmmoCount[currentGunIndex] -= 1;
-        
         Debug.Log("void Shoot");
         RaycastHit hit;
         //Shoots Raycast
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
         {
             shotDistance = hit.distance;
-
-            
-            Debug.Log("Raycast shot");
+            canShoot = false;
             //Checks to see if hit has a player tag
             if(hit.transform.CompareTag("Player"))
             {
-                Debug.Log("Compare Tag");
-
                 //gets oppositions health component and take away health.
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
                 print(shotDistance);
-
-
                 float DistanceReducedDamage(float distanceOfShot)
                 {
                     Debug.Log("Init Dmg: " + currentGun.baseDamage);
@@ -141,6 +139,12 @@ public class Shooting : AttributesSync
         }
         ammoCount = ic.maxAmmoCount[currentGunIndex];
         ic.AmmoCount[currentGunIndex] = ic.maxAmmoCount[currentGunIndex];
+    }
+
+    IEnumerator shootTimer()
+    {
+        yield return new WaitForSeconds(1/fireRate);
+        canShoot = true;
     }
 
     //Params: intial damage the gun does before distance reducer, distance of shot
