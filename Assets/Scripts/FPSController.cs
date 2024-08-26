@@ -9,10 +9,15 @@ public class FPSController : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
     public float jumpPower;
-    public float gravity; 
+    public float gravity;
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
+
+    // Speed boost variables
+    public float boostSpeed = 10f;
+    public float boostDuration = 5f;
+    private bool isBoostActive = false;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -34,10 +39,14 @@ public class FPSController : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
+        // Calculate current speeds with boost applied
+        float currentWalkSpeed = isBoostActive ? walkSpeed + boostSpeed : walkSpeed;
+        float currentRunSpeed = isBoostActive ? runSpeed + boostSpeed : runSpeed;
+
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? (isRunning ? currentRunSpeed : currentWalkSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning ? currentRunSpeed : currentWalkSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
@@ -72,5 +81,18 @@ public class FPSController : MonoBehaviour
         }
 
         #endregion
+
+        // Check if the speed boost should be activated
+        //if (Input.GetKeyDown(KeyCode.B) && !isBoostActive)
+       // {
+         //   StartCoroutine(SpeedBoost());
+     //   }
     }
+
+   /* private IEnumerator SpeedBoost()
+    {
+        isBoostActive = true;
+        yield return new WaitForSeconds(boostDuration);
+        isBoostActive = false;
+    }*/
 }

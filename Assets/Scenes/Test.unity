@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 101968261}
   - component: {fileID: 101968260}
+  - component: {fileID: 101968262}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -167,6 +168,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101968262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101968259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23beaf9b549e0b14daaf80c53ebc5952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testHerion: {fileID: 592634095}
 --- !u!1 &198937526
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +522,9 @@ GameObject:
   - component: {fileID: 592634092}
   - component: {fileID: 592634091}
   - component: {fileID: 592634090}
+  - component: {fileID: 592634095}
+  - component: {fileID: 592634093}
+  - component: {fileID: 592634094}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -534,6 +551,8 @@ MonoBehaviour:
   gravity: 10
   lookSpeed: 2
   lookXLimit: 45
+  boostSpeed: 20
+  boostDuration: 5
   canMove: 1
 --- !u!143 &592634091
 CharacterController:
@@ -578,6 +597,52 @@ Transform:
   - {fileID: 809747494}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &592634093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592634089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fb852de40222b44b6ad0fd251da305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthBoostAmount: 50
+  healthBoostDuration: 10
+--- !u!114 &592634094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592634089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1ac523ffc0ec347a0385896a20a37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &592634095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592634089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80bc3312b11c3254c8a673b5300fd72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsController: {fileID: 592634090}
+  playerHealth: {fileID: 592634093}
+  speedBoostAmount: 10
+  speedBoostDuration: 5
+  healthBoostAmount: 50
+  healthBoostDuration: 10
 --- !u!1 &809747491
 GameObject:
   m_ObjectHideFlags: 0
