@@ -364,8 +364,10 @@ GameObject:
   - component: {fileID: 2025948742668291556}
   - component: {fileID: 4485548874078387875}
   - component: {fileID: 1051648172557079530}
+  - component: {fileID: 4808615744480173153}
+  - component: {fileID: 1742027525412363033}
   m_Layer: 0
-  m_Name: Capsule (1)
+  m_Name: Heroin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,6 +461,46 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &4808615744480173153
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380190692237745511}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1742027525412363033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4380190692237745511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e7e970efc1aec4f865b5e216c0f6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBooster: 0
+  heroinDuration: 0
 --- !u!1 &6038094363356159346
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +653,7 @@ GameObject:
   - component: {fileID: 6206843274878712533}
   - component: {fileID: 5134132669862279236}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Healing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1152,6 +1194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedItem: 0
+  items:
+  - {fileID: 6061554154871072901}
+  - {fileID: 4380190692237745511}
 --- !u!1001 &88594384020733607
 PrefabInstance:
   m_ObjectHideFlags: 0
