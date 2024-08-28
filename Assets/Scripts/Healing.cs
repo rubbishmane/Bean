@@ -4,19 +4,37 @@ using UnityEngine;
 
 public class Healing : MonoBehaviour
 {
-    Health health;
+    Health healthScript;
+
+    public float healthBooster;
+    public int heroinDuration;
 
     void Awake()
     {
-        health = transform.parent.GetComponentInChildren<Health>();
+        healthScript = transform.parent.GetComponentInChildren<Health>();
+
     }
     void Lean()
     {
 
     }
 
-    void Heroin()
+    void StartHeroin()
+    {   
+        StartCoroutine(Heroin());
+    }
+
+    IEnumerator Heroin()
     {
         
+        healthScript.health += 50f;
+        Debug.Log("Current health =" + healthScript.health);
+
+        yield return new WaitForSeconds(heroinDuration);
+
+        healthScript.health -= 50f;
+        Debug.Log("Current health =" + healthScript.health);
+
+        yield return null;
     }
 }
