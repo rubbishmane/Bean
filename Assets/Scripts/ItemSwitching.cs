@@ -7,6 +7,8 @@ public class ItemSwitching : MonoBehaviour
 
     public int selectedItem = 0;
 
+    public GameObject[] items;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +38,17 @@ void Update()
 
     void SelectItem()
     {
-        int i = 0;
-        foreach (Transform item in transform)
+        for (int i = 0; i < items.Length; i++)
         {
-            if (i == selectedItem)
-                item.gameObject.SetActive(true);
-            else
-                item.gameObject.SetActive(false);
-            i++;
+            items[i].SetActive(false);
+        }
+        if (selectedItem == 0 || selectedItem == 1)
+        {
+            items[selectedItem].SetActive(true);
+        }
+        else 
+        {
+            items[i].SetActive(false);
         }
     }
 }
