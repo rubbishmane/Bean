@@ -48,7 +48,7 @@ void Update()
         }
         else 
         {
-            items[i].SetActive(false);
+            items[selectedItem].SetActive(false);
         }
     }
 }

@@ -18,9 +18,12 @@ public class Gun : MonoBehaviour
 
     
     [Header("Ammo")]
-    public int magSize;
+    
+    int[] maxBulletDistance = {20, 30, 12, 14, 150};
+    public int[] ammoCount = {7, 25, 5, 30, 1};
+    [HideInInspector] public int[] maxAmmoCount;
     [Header("Multipliers")]
-    public float scopeMultiplier;
+    public float[] scopeMultiplier = {0.8f, 0.65f, 0.9f, 0.7f, 0.3f};
 
     public float bloomMultiplier;
 
@@ -29,13 +32,11 @@ public class Gun : MonoBehaviour
  
     public ParticleSystem particles;
     [Header("Crosshairs")]
-    public int defaultFOV = 90;
+    public float defaultFOV = 90f;
     public Sprite crossHair;
     public Vector2 chSize;
 
-    void Awake()
-    {
-        Camera.main.fieldOfView = defaultFOV;
-    }
+    
+
 }
 

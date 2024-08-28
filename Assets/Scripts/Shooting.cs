@@ -105,7 +105,7 @@ public class Shooting : AttributesSync
             shotDistance = hit.distance;
             canShoot = false;
             //Checks to see if hit has a player tag
-            if(hit.transform.CompareTag("Player"))
+              if(hit.transform.CompareTag("Player"))
             {
                 //gets oppositions health component and take away health.
                 GameObject _enemy = hit.collider.gameObject;
