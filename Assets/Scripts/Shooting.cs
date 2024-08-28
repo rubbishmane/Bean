@@ -13,6 +13,7 @@ public class Shooting : AttributesSync
     public  Alteruna.Avatar _avatar;
 
     public int ammoCount;
+    int reducingFactor = 2;
     
     
 
@@ -65,7 +66,7 @@ public class Shooting : AttributesSync
         currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
         ammoCount = ic.AmmoCount[currentGunIndex];
         fireRate = currentGun.fireRate;
-        //reqeuires avatar to be you or the function exits.
+        //reqeuires avatar to be you or the function returns instantly.
         if(!_avatar.IsMe)
             return;
 
@@ -115,7 +116,7 @@ public class Shooting : AttributesSync
                     Debug.Log("Init Dmg: " + currentGun.baseDamage);
                     
                     float finalDmg;
-                    finalDmg = -(float)Math.Pow(2, distanceOfShot - distanceFactor) + currentGun.baseDamage;
+                    finalDmg = -(float)Math.Pow(reducingFactor, distanceOfShot - distanceFactor) + currentGun.baseDamage;
                     
                     if(finalDmg <=7)
                     {
