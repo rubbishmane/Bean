@@ -17,7 +17,7 @@ public class UIUpdater : MonoBehaviour
    
     private TextMeshProUGUI ammoCountText;
     private TextMeshProUGUI healthText;
-    private Shooting shootScript;
+    private ShootingButBetter shootScript;
     //gameobject under player 
     [SerializeField] private GameObject shoot;
 
@@ -38,7 +38,7 @@ public class UIUpdater : MonoBehaviour
         
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
         
-        shootScript = shoot.GetComponent<Shooting>();
+        shootScript = shoot.GetComponent<ShootingButBetter>();
         ammoCountObject = GameObject.Find("AmmoCount");
         ammoCountText = ammoCountObject.GetComponent<TextMeshProUGUI>();
         
@@ -62,7 +62,7 @@ public class UIUpdater : MonoBehaviour
     {
         if(!_avatar.IsMe)
             return;
-        ammoCountText.text = "Ammo: " + shootScript.ammoCount.ToString();
+        ammoCountText.text = "Ammo: " + shootScript.ammoCountToDisplay.ToString();
         healthText.text = "Health: " + healthScript.health.ToString();
         //healthBarScript.SetHealth(healthScript.health);
     }

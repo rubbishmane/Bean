@@ -11,14 +11,16 @@ public class ItemController : AttributesSync
     private UIUpdater uIUpdater;
     public Alteruna.Avatar thisAvatar;
     public int currentGunIndex; 
+    
 
     private const string MethodName = "SyncGun";
 
     
-    [HideInInspector] public int[] maxAmmoCount = {7, 25, 5, 30, 1};
+    
 
     void Awake()
     {   
+        currentGunIndex = 0;
         thisAvatar = GetComponentInParent<Alteruna.Avatar>();
         crossHairObject = GameObject.Find("CrossHair");
         CH = crossHairObject.GetComponent<Image>();
@@ -27,7 +29,7 @@ public class ItemController : AttributesSync
     void Start()
     {
         SwitchGun(0);
-        currentGunIndex = 0;
+        
         for (int i = 0; i < guns.Length; i++)
         {
             guns[i].SetActive(false);
@@ -72,6 +74,7 @@ public class ItemController : AttributesSync
     private void SwitchGun(int index)
     {
         // Sync the gun switch across all clients
+        
         InvokeRemoteMethod(MethodName, UserId.AllInclusive, index);
     }
 

@@ -1,153 +1,133 @@
 using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using Alteruna;
-using UnityEditor.Experimental.GraphView;
 
 public class ShootingButBetter : MonoBehaviour
 {
-
     Alteruna.Avatar _avatar;
-
-    Camera cam;
-
+    public Camera cam;
     ItemController ic;
     Gun currentGun;
 
-    public int ammoCountToDisplay;
-    public int damage;
+    [HideInInspector] public int ammoCountToDisplay;
     int currentGunIndex;
     int reducingFactor = 2;
 
     float shotDistance;
     float maxDistance;
-    float distanceFactor;
     float fireRate;
 
     bool canShoot;
+    bool isReloading;
+
+    [HideInInspector] public int[] ammoCount = {7, 25, 5, 30, 1};
 
     void Awake()
     {
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
+        ic = transform.parent.GetComponentInChildren<ItemController>();
     }
-    
-    // Start is called before the first frame update
+
     void Start()
     {
-        if(!_avatar.IsMe)
+        if (!_avatar.IsMe)
             return;
-        if(ic != null)
+
+        if (ic != null)
         {
             currentGunIndex = ic.currentGunIndex;
             currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
             maxDistance = currentGun.initDistance;
+            AfterStart();
         }
         else
         {
             Debug.Log("Item controller ic variable not found");
         }
-
-        ammoCountToDisplay = currentGun.ammoCount[currentGunIndex];
-        fireRate = currentGun.fireRate;
     }
 
-    // Update is called once per frame
+    void AfterStart()
+    {
+        ammoCountToDisplay = ammoCount[currentGunIndex];
+        fireRate = currentGun.fireRate;
+        canShoot = true;
+    }
+
     void Update()
     {
-        if(!_avatar.IsMe)
+        if (!_avatar.IsMe)
             return;
 
+        currentGunIndex = ic.currentGunIndex;
         currentGun = ic.guns[currentGunIndex].GetComponent<Gun>();
-        ammoCountToDisplay = currentGun.ammoCount[currentGunIndex];
+        ammoCountToDisplay = ammoCount[currentGunIndex];
         fireRate = currentGun.fireRate;
-        
-        if(currentGun.ammoCount[currentGunIndex] >= 1)
+        maxDistance = currentGun.initDistance;
+
+        // Check if the gun switch occurs during reloading, and cancel the reload
+        if (isReloading && ic.currentGunIndex != currentGunIndex)
         {
-            canShoot = false;
+            CancelReload();
         }
 
-        if(Input.GetMouseButton(0))
+        if (ammoCount[currentGunIndex] >= 1)
         {
-            if(canShoot)
-            {
-                Shoot();
-            }
-
-            //if you cant shoot play a empty clip sound effect
+            canShoot = true;
         }
 
-        if(Input.GetMouseButton(1) && currentGun != null)
+        if (Input.GetMouseButton(0) && canShoot)
         {
-            Scope();
+            Shoot();
         }
-        else
-        {
-            cam.fieldOfView = currentGun.defaultFOV; 
-        }
-        
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Reload();
         }
-    }
 
-    void LateUpdate()
-    {
-        currentGunIndex = ic.currentGunIndex;
-        maxDistance = currentGun.initDistance;
+        Scope();
     }
 
     void Scope()
     {
-        while(Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            cam.fieldOfView = currentGun.scopeMultiplier[currentGunIndex] * currentGun.defaultFOV;
+            cam.fieldOfView = Mathf.Lerp(currentGun.defaultFOV, currentGun.scopeMultiplier * currentGun.defaultFOV, 0.7f);
         }
-        
+        if (Input.GetMouseButtonUp(1))
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, currentGun.defaultFOV, 0.7f);
+        }
     }
 
     void Shoot()
     {
-
-        if(!_avatar.IsMe)
-        {
+        if (!canShoot || ammoCount[currentGunIndex] < 1 || !_avatar.IsMe)
             return;
-        }
 
         RaycastHit hit;
+        Debug.Log("Shoot void");
 
-        
-        StartCoroutine("ShootDelay");
-        currentGun.ammoCount[currentGunIndex]--;
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
+        StartCoroutine(ShootDelay());
+        ammoCount[currentGunIndex] -= 1;
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
         {
+            Debug.Log("Raycast");
             shotDistance = hit.distance;
             canShoot = false;
 
-            //Checks to see if hit has a player tag
-            if(hit.transform.CompareTag("Player"))
+            if (hit.transform.CompareTag("Player"))
             {
-                //gets oppositions health component and take away health.
+                Debug.Log("Compare Player");
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
 
-                
                 float DistanceReducedDamage(float distanceOfShot)
                 {
-                    Debug.Log("Init Dmg: " + currentGun.baseDamage);
-                    
-                    float finalDmg;
-                    finalDmg = -(float)Math.Pow(reducingFactor, distanceOfShot - distanceFactor) + currentGun.baseDamage;
-                    
-                    if(finalDmg <=7)
-                    {
-                        //return zero if the bullets finalDmg is not greater then the minDamage of the bullet.
-                        return 0f;
-                    }
-                    //Return a rounded value of finalDmg, to three significant figures
-                    return (float)Math.Round(finalDmg, 3);
+                    Debug.Log("Init Dmg: " + currentGun.baseDamage.ToString());
+                    float finalDmg = -(Mathf.Pow(reducingFactor, distanceOfShot - currentGun.maxBulletDistance)) + currentGun.baseDamage;
+                    return Mathf.Max(finalDmg, 0f); // Ensure final damage doesn't go below 0
                 }
 
                 _enemyHealth.Damage(DistanceReducedDamage(shotDistance));
@@ -156,33 +136,37 @@ public class ShootingButBetter : MonoBehaviour
         }
     }
 
-    
-
-    
-
     void Reload()
     {
-
-        if(!_avatar.IsMe)
-        {
+        if (!_avatar.IsMe || isReloading)
             return;
-        }
 
         canShoot = false;
-        StartCoroutine("ReloadDelay");
+        StartCoroutine(ReloadDelay());
+    }
+
+    public void CancelReload()
+    {
+        // Stop the reload coroutine if it's running
+        StopCoroutine("ReloadDelay");
+        isReloading = false;
+        canShoot = true;
+        Debug.Log("Reload canceled due to weapon switch");
     }
 
     IEnumerator ShootDelay()
     {
-        yield return new WaitForSeconds(1/currentGun.fireRate);
+        yield return new WaitForSeconds(1 / currentGun.fireRate);
         canShoot = true;
     }
 
     IEnumerator ReloadDelay()
     {
+        isReloading = true;
         yield return new WaitForSeconds(currentGun.reloadTime);
-        currentGun.ammoCount[currentGunIndex] = currentGun.maxAmmoCount[currentGunIndex];
+        ammoCount[currentGunIndex] = currentGun.maxAmmoCount;
         canShoot = true;
-        
+        isReloading = false;
+        Debug.Log("Reload complete");
     }
 }
