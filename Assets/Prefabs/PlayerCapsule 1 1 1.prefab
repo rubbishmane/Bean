@@ -1461,15 +1461,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d41ebdf97eee8a0489914a881d83adcd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8040152
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d41ebdf97eee8a0489914a881d83adcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.715
+      value: -0.668
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d41ebdf97eee8a0489914a881d83adcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07799995
+      value: 0.5680001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d41ebdf97eee8a0489914a881d83adcd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1935,15 +1935,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 288cbbc70a1470347b02ccc64730de4c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.6152
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 288cbbc70a1470347b02ccc64730de4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.715
+      value: -0.668
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 288cbbc70a1470347b02ccc64730de4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07799995
+      value: 0.568
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 288cbbc70a1470347b02ccc64730de4c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1980,11 +1980,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 288cbbc70a1470347b02ccc64730de4c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4583480828226547939}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 288cbbc70a1470347b02ccc64730de4c, type: 3}
 --- !u!1 &8432686403350102888 stripped
 GameObject:
@@ -1992,20 +1988,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8432686403350070728}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4583480828226547939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432686403350102888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd997af521bdca9429547b34709b171c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthScript: {fileID: 2140212894209988481}
-  maxHealth: 100
 --- !u!4 &8432686403350208328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 288cbbc70a1470347b02ccc64730de4c,

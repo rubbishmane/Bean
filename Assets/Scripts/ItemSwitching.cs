@@ -20,11 +20,12 @@ void Update()
 {
     int previousSelectedItem = selectedItem;
 
-    if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Alpha1))
+    if (Input.GetKey(KeyCode.E)) 
     {
         selectedItem = 0;
+        
     }
-        if (transform.childCount >= 2 && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Alpha2))
+        if (transform.childCount >= 2 && Input.GetKey(KeyCode.F))
     {
         selectedItem = 1;
     }
