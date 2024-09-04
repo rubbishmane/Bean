@@ -18,6 +18,7 @@ public class ShootingButBetter : MonoBehaviour
     float fireRate;
 
     bool canShoot;
+    bool isShooting;
     bool isReloading;
 
     [HideInInspector] public int[] ammoCount = {7, 25, 5, 30, 1};
@@ -75,7 +76,7 @@ public class ShootingButBetter : MonoBehaviour
             canShoot = true;
         }
 
-        if (Input.GetMouseButton(0) && canShoot)
+        if (Input.GetMouseButton(0) && canShoot && !isShooting)
         {
             Shoot();
         }
@@ -102,6 +103,7 @@ public class ShootingButBetter : MonoBehaviour
 
     void Shoot()
     {
+        isShooting = true;
         if (!canShoot || ammoCount[currentGunIndex] < 1 || !_avatar.IsMe)
             return;
 
@@ -158,6 +160,7 @@ public class ShootingButBetter : MonoBehaviour
     {
         yield return new WaitForSeconds(1 / currentGun.fireRate);
         canShoot = true;
+        isShooting = false;
     }
 
     IEnumerator ReloadDelay()

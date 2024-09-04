@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
     public bool isEquipt;
     [Header("Time")]
     public float fireRate;// = {1.95f, 2.4f, 0.33f, 3f, 1f};
+    public bool rapidFire;
 
     public float reloadTime;// = {3f, 4f, 6f, 2.5f, 5f};
     [Header("Damage")]
