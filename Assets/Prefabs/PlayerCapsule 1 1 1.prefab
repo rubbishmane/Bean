@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBooster: 0
   heroinDuration: 0
+  maxHealth: 100
 --- !u!1 &820827352817393376
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBooster: 0
   heroinDuration: 0
+  maxHealth: 100
 --- !u!1 &6038094363356159346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1307,7 @@ MonoBehaviour:
   hasWeapon: 0
   isEquipt: 0
   fireRate: 1
+  rapidFire: 0
   reloadTime: 5
   baseDamage: 80
   initDistance: 150
@@ -1421,6 +1424,7 @@ MonoBehaviour:
   hasWeapon: 0
   isEquipt: 0
   fireRate: 1.95
+  rapidFire: 0
   reloadTime: 3
   baseDamage: 13
   initDistance: 20
@@ -1432,7 +1436,7 @@ MonoBehaviour:
   particles: {fileID: 0}
   defaultFOV: 90
   crossHair: {fileID: 21300000, guid: 8c89ed5746a4faa48bb97701cc2f2e35, type: 3}
-  chSize: {x: 20, y: 20}
+  chSize: {x: 40, y: 40}
 --- !u!4 &4096444530678978929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3263699454365990613, guid: 748d19574625db444877ca05561b6aea,
@@ -1632,7 +1636,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasWeapon: 0
   isEquipt: 0
-  fireRate: 3
+  fireRate: 8
+  rapidFire: 0
   reloadTime: 2.5
   baseDamage: 11
   initDistance: 20
@@ -1644,7 +1649,7 @@ MonoBehaviour:
   particles: {fileID: 0}
   defaultFOV: 90
   crossHair: {fileID: 21300000, guid: b8e78032f8af0954784d1fe9e5a09187, type: 3}
-  chSize: {x: 20, y: 20}
+  chSize: {x: 40, y: 40}
 --- !u!4 &3410229065548771719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 465444049231498612, guid: 23bf6ec2ea670874eaf412bd4e6d0f0f,
@@ -1769,7 +1774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasWeapon: 0
   isEquipt: 0
-  fireRate: 0.33
+  fireRate: 1
+  rapidFire: 0
   reloadTime: 6
   baseDamage: 40
   initDistance: 12
@@ -1781,7 +1787,7 @@ MonoBehaviour:
   particles: {fileID: 0}
   defaultFOV: 90
   crossHair: {fileID: 21300000, guid: e7e80d39e3e102147a3be13caa7cd3d7, type: 3}
-  chSize: {x: 75, y: 75}
+  chSize: {x: 100, y: 100}
 --- !u!1001 &6202094883652872764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1900,7 +1906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasWeapon: 0
   isEquipt: 0
-  fireRate: 2.4
+  fireRate: 6
+  rapidFire: 0
   reloadTime: 4
   baseDamage: 25
   initDistance: 30
@@ -1911,8 +1918,8 @@ MonoBehaviour:
   recoilMultiplier: 0
   particles: {fileID: 0}
   defaultFOV: 90
-  crossHair: {fileID: 0}
-  chSize: {x: 0, y: 0}
+  crossHair: {fileID: 21300000, guid: 8c89ed5746a4faa48bb97701cc2f2e35, type: 3}
+  chSize: {x: 40, y: 40}
 --- !u!1001 &8432686403350070728
 PrefabInstance:
   m_ObjectHideFlags: 0

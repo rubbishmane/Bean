@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Health : AttributesSync
 {
-    
+    spaws spawn;
     public float health;
     private float maxHealth = 100f;
     int count;
@@ -16,6 +16,7 @@ public class Health : AttributesSync
     //private OnDeath onDeath;
     void Start()
     {
+        spawn = GameObject.Find("Spawns").GetComponent<spaws>();
         health = maxHealth;
         //onDeath = transform.parent.GetComponent<OnDeath>();
     }
@@ -41,8 +42,7 @@ public class Health : AttributesSync
        
         if(health <= 0f)
         {  
-            //Die();
-            //Application.Quit();
+           Die();
         }
     }
 
@@ -50,5 +50,7 @@ public class Health : AttributesSync
     {
         Multiplayer.LoadScene("Menu");
             //Destroy(transform.parent.gameObject);
-    }
+        Destroy(gameObject);
+        spawn.SpawnAPlayer();
+    }   
 }
