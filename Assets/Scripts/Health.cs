@@ -12,6 +12,7 @@ public class Health : AttributesSync
     public float health;
     private float maxHealth = 100f;
     int count;
+    private MeshRenderer capsuleRenderer;
 
     //private OnDeath onDeath;
     void Start()
@@ -48,9 +49,15 @@ public class Health : AttributesSync
 
     void Die()
     {
-        Multiplayer.LoadScene("Menu");
-            //Destroy(transform.parent.gameObject);
-        Destroy(gameObject);
-        spawn.SpawnAPlayer();
+        capsuleRenderer.enabled = false;
+        health = maxHealth;
+        ReloadAllGuns();
+
+        
     }   
+
+    void ReloadAllGuns()
+    {
+
+    }
 }
