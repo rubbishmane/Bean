@@ -1,4 +1,4 @@
-using System.Collections;
+     using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Healthbar : MonoBehaviour
 {
     public Slider slider;
-    public Health healthScript; 
+    Health healthScript; 
 
     void Start()
     {
