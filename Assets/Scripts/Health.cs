@@ -4,6 +4,7 @@ using UnityEngine;
 using Alteruna; 
 using Alteruna.Trinity;
 using UnityEngine.SceneManagement;
+using System.Numerics;
 //using Alteruna.Multiplayer;
 
 public class Health : AttributesSync
@@ -13,6 +14,8 @@ public class Health : AttributesSync
     private float maxHealth = 100f;
     int count;
     private MeshRenderer capsuleRenderer;
+    GameManager gameManager;
+    UnityEngine.Vector3 placeToSpawn;
 
     //private OnDeath onDeath;
     void Start()
@@ -45,6 +48,7 @@ public class Health : AttributesSync
         {  
            Die();
         }
+        
     }
 
     void Die()
@@ -52,7 +56,7 @@ public class Health : AttributesSync
         capsuleRenderer.enabled = false;
         health = maxHealth;
         ReloadAllGuns();
-
+        
         
     }   
 

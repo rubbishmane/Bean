@@ -21,6 +21,7 @@ public class SpawnPlayers : AttributesSync
     bool shouldTry;
     public string theTerroristsName;
 
+
     void Start()
     {
         shouldTry = true;
@@ -104,4 +105,6 @@ public class SpawnPlayers : AttributesSync
             Multiplayer.SpawnAvatar(defenseSpawn);
         }
     }
+
+
 }
