@@ -16,7 +16,7 @@ public class GameManager : AttributesSync
     
     Transform[] bombPosititons;
     [SerializeField] GameObject bombPrefab;
-    Bomb[] bomb;
+   
     
     // Start is called before the first frame update
     void Start()
@@ -27,12 +27,9 @@ public class GameManager : AttributesSync
     }
     void SetBombLocs()
     {
-        for(int i = 0; i < bomb.Length; i++)
+        for(int i = 0;i < bombPosititons.Length;i++)
         {
-            int bombIndex = UnityEngine.Random.Range(0, 3);
-            Transform loc = bomb[i].location[bombIndex].transform;
-            SpawnBombs(loc);
-            
+            Instantiate(bombPrefab, bombPosititons[i]);
         }
         
     }
@@ -48,7 +45,7 @@ public class GameManager : AttributesSync
     }
     void PickedUpABomb()
     {
-        bombCount++;
+        bombCount++;  
     }
 
     void SwitchRoms()
@@ -69,11 +66,6 @@ public class GameManager : AttributesSync
        
     }
 
-    public class Bomb : GameManager
-    {
-        int roomIndex;
-        public GameObject[] location;
-        
-    }
+  
 }
 
