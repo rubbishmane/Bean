@@ -14,7 +14,7 @@ public class GameManager : AttributesSync
     int bombCount;
     User winner;
     
-    Transform[] bombPosititons;
+    [SerializeField]Transform[] bombPosititons;
     [SerializeField] GameObject bombPrefab;
    
     
