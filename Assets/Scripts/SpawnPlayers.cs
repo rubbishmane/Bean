@@ -97,14 +97,19 @@ public class SpawnPlayers : AttributesSync
         if (theTerroristsName == Multiplayer.Me.Name)
         {
             Debug.Log("I am the terrorist");
-            Multiplayer.SpawnAvatar(terroristSpawn);
+            
         }
         else
         {
             Debug.Log("I am on defense");
-            Multiplayer.SpawnAvatar(defenseSpawn);
+            
         }
     }
 
 
 }
+
+
+
+
+        

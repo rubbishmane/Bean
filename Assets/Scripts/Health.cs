@@ -14,7 +14,7 @@ public class Health : AttributesSync
     private float maxHealth = 100f;
     int count;
     private MeshRenderer capsuleRenderer;
-    GameManager gameManager;
+   
     UnityEngine.Vector3 placeToSpawn;
 
     //private OnDeath onDeath;
