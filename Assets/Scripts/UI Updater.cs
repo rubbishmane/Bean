@@ -43,8 +43,8 @@ public class UIUpdater : MonoBehaviour
         ammoCountText = ammoCountObject.GetComponent<TextMeshProUGUI>();
         
         healthScript = Health.GetComponent<Health>();
-        healthBarObject = GameObject.Find("HealthBar");
-        healthText = healthBarObject.GetComponent<TextMeshProUGUI>();
+        //healthBarObject = GameObject.Find("HealthBar");
+        //healthText = healthBarObject.GetComponent<TextMeshProUGUI>();
         //healthBarScript = healthBarObject.GetComponent<Healthbar>();
     }
 
@@ -62,8 +62,8 @@ public class UIUpdater : MonoBehaviour
     {
         if(!_avatar.IsMe)
             return;
-        ammoCountText.text = "Ammo: " + shootScript.ammoCountToDisplay.ToString();
-        healthText.text = "Health: " + healthScript.health.ToString();
+        ammoCountText.text = shootScript.ammoCountToDisplay.ToString() + "/" + shootScript.maxAmmo[shootScript.currentGunIndex];
+        //healthText.text = "Health: " + healthScript.health.ToString();
         //healthBarScript.SetHealth(healthScript.health);
     }
 }

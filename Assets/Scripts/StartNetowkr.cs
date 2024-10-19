@@ -41,4 +41,9 @@ public class RoomManager : AttributesSync
     {
         Multiplayer.Instance.LoadScene("Menu");
     }
+
+    public void QuitFunction()
+    {
+        Application.Quit();
+    }
 }

@@ -119,6 +119,7 @@ public class SpawnPlayers : AttributesSync
     [SynchronizableMethod]
     void RespawnSync()
     {
+        Cursor.lockState = CursorLockMode.None;
         currentRoom = Multiplayer.Instance.CurrentRoom;
         currentRoom.Leave();
         // if(theTerroristsName == Multiplayer.Me.Name)

@@ -17,10 +17,12 @@ public class Health : AttributesSync
    
     UnityEngine.Vector3 placeToSpawn;
     [SerializeField]GameManager manager;
+    tracker tracker;
 
     //private OnDeath onDeath;
     void Start()
-    {
+    {   
+        tracker = GameObject.Find("tracker").GetComponent<tracker>();
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         health = maxHealth;
         //onDeath = transform.parent.GetComponent<OnDeath>();
@@ -66,8 +68,11 @@ public class Health : AttributesSync
 
     void Die()
     {
-       
+        tracker.losses++;
+
         manager.Respawn();
+        tracker.Lose();
+
         
     }   
 

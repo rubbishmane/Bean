@@ -7,10 +7,11 @@ public class ShootingButBetter : MonoBehaviour
     Alteruna.Avatar _avatar;
     public Camera cam;
     ItemController ic;
-    Gun currentGun;
+    public Gun currentGun;
+    tracker tracker;
 
     [HideInInspector] public int ammoCountToDisplay;
-    int currentGunIndex;
+    public int currentGunIndex;
     int reducingFactor = 2;
 
     float shotDistance;
@@ -22,9 +23,11 @@ public class ShootingButBetter : MonoBehaviour
     bool isReloading;
 
     [HideInInspector] public int[] ammoCount = {7, 25, 5, 30, 1};
+    [HideInInspector] public int[] maxAmmo = {7, 25, 5, 30, 1};
 
     void Awake()
     {
+        tracker = GameObject.Find("tracker").GetComponent<tracker>();
         _avatar = transform.parent.GetComponent<Alteruna.Avatar>();
         ic = transform.parent.GetComponentInChildren<ItemController>();
     }
@@ -121,9 +124,15 @@ public class ShootingButBetter : MonoBehaviour
             //check if hit is player
             if (hit.transform.CompareTag("Player"))
             {
+                
                 Debug.Log("Compare Player");
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
+
+                if((_enemyHealth.health - currentGun.baseDamage) <= 0)
+                {
+                    tracker.Win();
+                }
                 //reduce damage over distance
                 // float DistanceReducedDamage(float distanceOfShot)
                 // {
@@ -133,6 +142,7 @@ public class ShootingButBetter : MonoBehaviour
                 // }
 
                 _enemyHealth.Damage(currentGun.baseDamage);
+               
                 //Debug.Log("DMG after: " + DistanceReducedDamage(shotDistance));
             }
         }
