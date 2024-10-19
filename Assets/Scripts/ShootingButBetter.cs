@@ -112,28 +112,28 @@ public class ShootingButBetter : MonoBehaviour
 
         StartCoroutine(ShootDelay());
         ammoCount[currentGunIndex] -= 1;
-
+        //perform raycast
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.Log("Raycast");
             shotDistance = hit.distance;
             canShoot = false;
-
+            //check if hit is player
             if (hit.transform.CompareTag("Player"))
             {
                 Debug.Log("Compare Player");
                 GameObject _enemy = hit.collider.gameObject;
                 Health _enemyHealth = _enemy.transform.parent.GetComponentInChildren<Health>();
+                //reduce damage over distance
+                // float DistanceReducedDamage(float distanceOfShot)
+                // {
+                //     Debug.Log("Init Dmg: " + currentGun.baseDamage.ToString());
+                //     float finalDmg = -(Mathf.Pow(reducingFactor, distanceOfShot - currentGun.maxBulletDistance)) + currentGun.baseDamage;
+                //     return Mathf.Max(finalDmg, 0f); // Ensure final damage doesn't go below 0
+                // }
 
-                float DistanceReducedDamage(float distanceOfShot)
-                {
-                    Debug.Log("Init Dmg: " + currentGun.baseDamage.ToString());
-                    float finalDmg = -(Mathf.Pow(reducingFactor, distanceOfShot - currentGun.maxBulletDistance)) + currentGun.baseDamage;
-                    return Mathf.Max(finalDmg, 0f); // Ensure final damage doesn't go below 0
-                }
-
-                _enemyHealth.Damage(DistanceReducedDamage(shotDistance));
-                Debug.Log("DMG after: " + DistanceReducedDamage(shotDistance));
+                _enemyHealth.Damage(currentGun.baseDamage);
+                //Debug.Log("DMG after: " + DistanceReducedDamage(shotDistance));
             }
         }
     }

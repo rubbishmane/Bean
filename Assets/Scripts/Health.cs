@@ -9,18 +9,19 @@ using System.Numerics;
 
 public class Health : AttributesSync
 {
-    spaws spawn;
+    
     public float health;
     private float maxHealth = 100f;
     int count;
     private MeshRenderer capsuleRenderer;
    
     UnityEngine.Vector3 placeToSpawn;
+    [SerializeField]GameManager manager;
 
     //private OnDeath onDeath;
     void Start()
     {
-        spawn = GameObject.Find("Spawns").GetComponent<spaws>();
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         health = maxHealth;
         //onDeath = transform.parent.GetComponent<OnDeath>();
     }
@@ -33,12 +34,24 @@ public class Health : AttributesSync
     [SynchronizableMethod] 
     void Damage2 (float dmg)
     {
-        health -= dmg; 
+        if((health -= dmg) <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            health -= dmg; 
+        }
+       
     }
 
 
     void Update()
     {
+        if(manager == null)
+        {
+            manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
         if(!Multiplayer.GetAvatar().IsMe)
         {
             return;
@@ -53,10 +66,8 @@ public class Health : AttributesSync
 
     void Die()
     {
-        capsuleRenderer.enabled = false;
-        health = maxHealth;
-        ReloadAllGuns();
-        
+       
+        manager.Respawn();
         
     }   
 

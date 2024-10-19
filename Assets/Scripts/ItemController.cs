@@ -65,6 +65,7 @@ public class ItemController : AttributesSync
                 break;
             case "5":
                 SwitchGun(4);
+                
                 break;
             default:
                 break;
@@ -74,7 +75,7 @@ public class ItemController : AttributesSync
     private void SwitchGun(int index)
     {
         // Sync the gun switch across all clients
-        
+        SetCrossHair(index);
         InvokeRemoteMethod(MethodName, UserId.AllInclusive, index);
     }
 
@@ -117,7 +118,7 @@ public class ItemController : AttributesSync
         if (index >= 0 && index < guns.Length)
         {
             guns[index].SetActive(true);
-            SetCrossHair(index);
+            
             currentGunIndex = index;
         }
     }

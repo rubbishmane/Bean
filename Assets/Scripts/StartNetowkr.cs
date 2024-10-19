@@ -1,26 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Alteruna;
-using UnityEngine.SceneManagement;
-using TMPro;
-using JetBrains.Annotations;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using System;
 
-public class StartNetowkr : AttributesSync
-
+public class RoomManager : AttributesSync
 {
-    List<Alteruna.Room> room = new List<Alteruna.Room>();
+    List<Alteruna.Room> rooms = new List<Alteruna.Room>(); // List of rooms
+
+    // Create a new room
     public void Create()
     {
-        Multiplayer.CreateRoom("Room", false, 0, true);
-        Multiplayer.LoadScene("Game");
+        if (Multiplayer.Instance != null)
+        {
+            Multiplayer.Instance.CreateRoom("Room", false, 0, true, true, 2); // Use Multiplayer.Instance
+            Multiplayer.Instance.LoadScene("Game");
+        }
+        else
+        {
+            Debug.LogError("Multiplayer instance is not available.");
+        }
     }
 
+    // Connect to an existing room
     public void Connect()
     {
-        print("Join Attempted");
-        Multiplayer.JoinFirstAvailable();
-        Multiplayer.LoadScene("Game");
+        if (Multiplayer.Instance != null)
+        {
+            print("Join Attempted");
+            Multiplayer.Instance.JoinFirstAvailable(); // Use Multiplayer.Instance
+            Multiplayer.Instance.LoadScene("Game");
+        }
+        else
+        {
+            Debug.LogError("Multiplayer instance is not available.");
+        }
+    }
+
+    public void RespawnFunction()
+    {
+        Multiplayer.Instance.LoadScene("Menu");
     }
 }
-
